@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>이향인 체크리스트 — 외향인도 내향인도 아닌, 제3의 기질</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700;900&family=Noto+Sans+KR:wght@300;400;500;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#f6f3ee;
+  --bg2:#ede9e1;
+  --surface:#fff;
+  --ink:#1a1a1a;
+  --ink2:#4a4540;
+  --ink3:#8a8580;
+  --ink4:#b5b0a8;
+  --accent:#c4553a;
+  --accent-soft:#f0ddd6;
+  --green:#3a6b5a;
+  --green-soft:#d6e8e0;
+  --rule:#d5d0c8;
+  --radius:6px;
+}
+html{font-size:16px}
+body{
+  font-family:'Noto Sans KR',sans-serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;
+  -webkit-font-smoothing:antialiased;
+}
+body::before{
+  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:url("data:image/svg+xml,%3Csvg width='200' height='200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.03'/%3E%3C/svg%3E");
+}
+.container{position:relative;z-index:1;max-width:640px;margin:0 auto;padding:0 24px}
+
+/* ── Landing ── */
+.landing{
+  min-height:100vh;min-height:100dvh;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:60px 0;animation:appear .6s ease-out;
+}
+@keyframes appear{from{opacity:0}to{opacity:1}}
+.landing .kicker{
+  font-size:.7rem;font-weight:700;letter-spacing:4px;text-transform:uppercase;
+  color:var(--accent);margin-bottom:24px;
+}
+.landing h1{
+  font-family:'Noto Serif KR',serif;font-weight:900;
+  font-size:clamp(2rem,7vw,3.2rem);line-height:1.4;
+  color:var(--ink);margin-bottom:20px;
+}
+.landing h1 em{font-family:'DM Serif Display',serif;font-style:italic;color:var(--accent)}
+.landing .desc{
+  font-size:1rem;line-height:2;color:var(--ink2);max-width:420px;margin-bottom:40px;
+}
+.landing .desc strong{color:var(--ink);font-weight:700}
+.btn-start{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:16px 36px;border:2px solid var(--ink);border-radius:0;
+  background:var(--ink);color:var(--bg);
+  font-size:1rem;font-weight:700;font-family:inherit;
+  cursor:pointer;transition:all .2s;letter-spacing:1px;align-self:flex-start;
+}
+.btn-start:hover{background:transparent;color:var(--ink)}
+.landing .meta{
+  margin-top:20px;font-size:.8rem;color:var(--ink4);
+  border-top:1px solid var(--rule);padding-top:16px;max-width:300px;
+}
+
+/* ── Quiz ── */
+.quiz{display:none;padding:24px 0 120px}
+.quiz.active{display:block;animation:appear .4s ease-out}
+.progress-wrap{
+  position:sticky;top:0;z-index:10;
+  background:rgba(246,243,238,.92);backdrop-filter:blur(12px);
+  margin:0 -24px;padding:16px 24px 14px;border-bottom:1px solid var(--rule);
+}
+.progress-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px}
+.progress-count{font-family:'Noto Serif KR',serif;font-size:.85rem;color:var(--ink3)}
+.progress-count b{color:var(--accent);font-weight:700;font-size:1.1rem}
+.progress-page{font-size:.75rem;color:var(--ink4);letter-spacing:1px}
+.progress-bar{height:2px;background:var(--rule)}
+.progress-fill{height:100%;background:var(--accent);transition:width .5s ease}
+
+.q-group{animation:slideUp .35s ease-out}
+@keyframes slideUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.q-group-header{
+  font-family:'Noto Serif KR',serif;font-size:.8rem;
+  color:var(--ink4);letter-spacing:2px;padding:28px 0 20px;
+  border-bottom:1px solid var(--rule);margin-bottom:0;
+}
+
+.q-card{padding:28px 0;border-bottom:1px solid var(--rule)}
+.q-card:last-child{border-bottom:none}
+.q-card.missed{background:var(--accent-soft);margin:0 -24px;padding:28px 24px;border-radius:var(--radius)}
+.q-card.missed .q-number{color:var(--accent)}
+@keyframes nudge{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+.q-card.shake{animation:nudge .3s ease}
+.q-head{display:flex;align-items:flex-start;gap:14px;margin-bottom:20px}
+.q-number{
+  font-family:'DM Serif Display',serif;font-size:1.3rem;
+  color:var(--ink4);min-width:32px;line-height:1.6;transition:color .3s;
+}
+.q-card.answered .q-number{color:var(--accent)}
+.q-text{font-size:1.05rem;line-height:1.8;color:var(--ink);font-weight:400}
+
+.scale{display:flex;gap:8px;padding-left:46px}
+.scale-btn{
+  flex:1;padding:14px 4px 12px;
+  border:1.5px solid var(--rule);border-radius:var(--radius);
+  background:var(--surface);text-align:center;cursor:pointer;
+  transition:all .2s;font-family:inherit;
+  display:flex;flex-direction:column;align-items:center;gap:4px;
+}
+.scale-btn .score-num{font-family:'DM Serif Display',serif;font-size:1.2rem;color:var(--ink2)}
+.scale-btn .score-label{font-size:.65rem;color:var(--ink3);line-height:1.3;word-break:keep-all}
+.scale-btn:hover{border-color:var(--ink3);background:var(--bg2)}
+.scale-btn.selected{border-color:var(--accent);background:var(--accent-soft)}
+.scale-btn.selected .score-num{color:var(--accent);font-weight:700}
+.scale-btn.selected .score-label{color:var(--accent)}
+
+.nav-bar{
+  position:fixed;bottom:0;left:0;right:0;z-index:20;
+  background:rgba(246,243,238,.94);backdrop-filter:blur(12px);
+  border-top:1px solid var(--rule);padding:12px 24px;
+}
+.nav-inner{max-width:640px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}
+.btn-nav{
+  padding:12px 28px;border:1.5px solid var(--rule);border-radius:var(--radius);
+  background:var(--surface);color:var(--ink2);
+  font-size:.85rem;font-weight:600;font-family:inherit;cursor:pointer;transition:all .2s;
+}
+.btn-nav:hover{border-color:var(--ink);color:var(--ink)}
+.btn-nav:disabled{opacity:.25;cursor:not-allowed}
+.btn-nav.primary{border-color:var(--ink);background:var(--ink);color:var(--bg)}
+.btn-nav.primary:hover{background:var(--ink2)}
+.btn-nav.primary:disabled{opacity:.25}
+.nav-dots{display:flex;gap:8px}
+.nav-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:var(--rule);transition:all .3s;cursor:pointer;
+}
+.nav-dot.active{background:var(--accent);transform:scale(1.4)}
+.nav-dot.done{background:var(--green)}
+
+/* ── Result ── */
+.result{display:none;padding:60px 0 80px}
+.result.active{display:block;animation:appear .5s ease-out}
+.result-header{text-align:center;padding-bottom:40px;border-bottom:1px solid var(--rule);margin-bottom:40px}
+#result-capture{background:var(--bg);padding:8px 0}
+.result-kicker{font-size:.7rem;font-weight:700;letter-spacing:4px;color:var(--accent);margin-bottom:16px}
+.result-type{font-family:'Noto Serif KR',serif;font-weight:900;font-size:clamp(1.8rem,5vw,2.6rem);margin-bottom:8px}
+.result-emoji{font-size:3rem;margin-bottom:16px}
+.result-score-wrap{display:flex;align-items:baseline;justify-content:center;gap:4px;margin-top:16px}
+.result-score-num{font-family:'DM Serif Display',serif;font-size:3.5rem;color:var(--accent)}
+.result-score-max{font-size:1rem;color:var(--ink4)}
+.result-meter{max-width:400px;margin:0 auto;padding:0 20px}
+.meter-track{
+  height:24px;border-radius:12px;margin:16px 0 10px;
+  background:var(--bg2);border:1px solid var(--rule);
+  position:relative;overflow:visible;
+}
+.meter-fill{
+  height:100%;border-radius:12px;
+  transition:width 1.4s cubic-bezier(.22,1,.36,1);
+  position:relative;
+}
+.meter-fill.pass{background:linear-gradient(90deg,var(--green-soft),var(--green))}
+.meter-fill.fail{background:linear-gradient(90deg,var(--accent-soft),var(--rule))}
+.meter-score-tag{
+  position:absolute;right:-2px;top:-32px;
+  background:var(--ink);color:var(--bg);
+  padding:4px 10px;border-radius:4px;
+  font-family:'DM Serif Display',serif;font-size:.85rem;font-weight:700;
+  white-space:nowrap;
+}
+.meter-score-tag::after{
+  content:'';position:absolute;bottom:-4px;right:8px;
+  width:8px;height:8px;background:var(--ink);
+  transform:rotate(45deg);
+}
+.meter-threshold{
+  position:absolute;left:61.67%;top:-6px;bottom:-6px;
+  width:2px;background:var(--accent);z-index:2;
+}
+.meter-threshold-label{
+  position:absolute;left:61.67%;bottom:-22px;
+  transform:translateX(-50%);
+  font-size:.7rem;color:var(--accent);font-weight:700;white-space:nowrap;
+}
+.meter-labels{display:flex;justify-content:space-between;font-size:.7rem;color:var(--ink4);margin-top:20px}
+.result-body{max-width:480px;margin:32px auto 0;text-align:center}
+.result-desc{font-size:1rem;line-height:2;color:var(--ink2)}
+.result-desc strong{color:var(--ink);font-weight:700}
+
+
+
+
+
+
+
+
+
+.btn-retry{
+  display:block;margin:40px auto 0;
+  padding:14px 32px;border:1.5px solid var(--rule);border-radius:var(--radius);
+  background:transparent;color:var(--ink2);
+  font-size:.85rem;font-weight:600;font-family:inherit;cursor:pointer;transition:all .2s;
+}
+.btn-retry:hover{border-color:var(--ink);color:var(--ink)}
+
+.share-actions{
+  display:flex;gap:12px;justify-content:center;
+  margin-top:32px;padding-top:28px;border-top:1px solid var(--rule);
+}
+.btn-share{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:12px 24px;border:1.5px solid var(--rule);border-radius:var(--radius);
+  background:var(--surface);color:var(--ink2);
+  font-size:.85rem;font-weight:600;font-family:inherit;cursor:pointer;transition:all .2s;
+}
+.btn-share:hover{border-color:var(--ink);color:var(--ink)}
+.btn-share svg{flex-shrink:0}
+.share-toast{
+  position:fixed;bottom:80px;left:50%;transform:translateX(-50%);
+  background:var(--ink);color:var(--bg);padding:12px 24px;border-radius:var(--radius);
+  font-size:.85rem;font-weight:500;z-index:100;
+  animation:toastIn .3s ease-out;
+}
+@keyframes toastIn{from{opacity:0;transform:translateX(-50%) translateY(10px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
+
+/* ── Mobile ── */
+@media(max-width:600px){
+  .container{padding:0 20px}
+  .q-text{font-size:1.05rem}
+  .scale{padding-left:0;gap:6px;flex-wrap:wrap}
+  .scale-btn{min-width:calc(25% - 6px);padding:12px 4px 10px}
+  .scale-btn .score-num{font-size:1.15rem}
+  .scale-btn .score-label{font-size:.62rem}
+  .q-head{gap:10px}
+  .q-card{padding:22px 0}
+  
+  .nav-bar{padding:10px 20px}
+  .progress-wrap{margin:0 -20px;padding:14px 20px 12px}
+  .result-score-num{font-size:2.8rem}
+  .share-actions{flex-direction:column;gap:8px}
+  .btn-share{justify-content:center}
+}
+@media(max-width:380px){
+  .scale-btn{min-width:calc(33.3% - 6px)}
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="landing" id="landing">
+    <div class="kicker">이향인 체크리스트</div>
+    <h1>당신은<br>어떤 사람인가요<em>?</em></h1>
+    <p class="desc">
+      내향인이라 하기엔 사교적이고,<br>
+      외향인이라 하기엔 혼자가 편한.<br>
+      어쩌면 우리에게는<br>
+      <strong>새로운 이름</strong>이 필요한 건 아닐까요?
+    </p>
+    <button class="btn-start" onclick="startQuiz()">테스트 시작</button>
+    <p class="meta">40문항 · 약 5–7분 소요<br>라미 카민스키 박사의 이향인 체크리스트 기반</p>
+  </div>
+
+  <div class="quiz" id="quiz">
+    <div class="progress-wrap">
+      <div class="progress-top">
+        <span class="progress-count"><b id="answered-count">0</b> / 40</span>
+        <span class="progress-page" id="page-label"></span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0"></div></div>
+    </div>
+    <div id="questions-area"></div>
+  </div>
+
+  <div class="result" id="result">
+    <div id="result-capture">
+    <div class="result-header">
+      <div class="result-kicker">당신의 유형</div>
+      <div class="result-emoji" id="result-emoji"></div>
+      <div class="result-type" id="result-title"></div>
+      <div class="result-score-wrap">
+        <span class="result-score-num" id="result-num"></span>
+        <span class="result-score-max">/ 280</span>
+      </div>
+      <div class="result-meter">
+        <div class="meter-track">
+          <div class="meter-fill" id="meter-fill" style="width:0%">
+            <span class="meter-score-tag" id="meter-tag"></span>
+          </div>
+          <div class="meter-threshold"></div>
+          <div class="meter-threshold-label">188</div>
+        </div>
+        <div class="meter-labels"><span>40</span><span>280</span></div>
+      </div>
+    </div>
+    <div class="result-body"><p class="result-desc" id="result-desc"></p></div>
+    </div>
+
+    <div class="share-actions">
+      <button class="btn-share" onclick="shareImage()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+        이미지로 저장
+      </button>
+      <button class="btn-share" onclick="shareText()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+        텍스트 공유
+      </button>
+    </div>
+
+    <button class="btn-retry" onclick="location.reload()">다시 테스트하기</button>
+  </div>
+</div>
+
+<div class="nav-bar" id="nav-bar" style="display:none">
+  <div class="nav-inner">
+    <button class="btn-nav" id="btn-prev" onclick="changePage(-1)">이전</button>
+    <div class="nav-dots" id="nav-dots"></div>
+    <button class="btn-nav primary" id="btn-next" onclick="changePage(1)">다음</button>
+  </div>
+</div>
+
+<script>
+const QS=[
+  {n:1,t:"나는 사람들이 많이 모인 곳에 있으면 외로움을 느낀다.",d:"F"},
+  {n:2,t:"내 삶에서 진정으로 가까운 사람은 극소수다.",d:"F"},
+  {n:3,t:"나는 파티를 즐기며 가능한 한 자주 참석한다.",d:"R"},
+  {n:4,t:"나는 혼자만의 시간이 많이 필요하다.",d:"F"},
+  {n:5,t:"슬플 때 나는 사람들이 곁에서 나를 위로해주길 바란다.",d:"R"},
+  {n:6,t:"나는 혼자 있는 것을 좋아한다. 나 자신이 최고의 친구다.",d:"F"},
+  {n:7,t:"나는 요즘 유행하는 인기 장소에 관한 소식을 가장 먼저 듣는다.",d:"R"},
+  {n:8,t:"나는 혼자 일하는 것을 좋아한다.",d:"F"},
+  {n:9,t:"나는 내 신념을 따르는 데 타인의 동의를 구하지 않는다.",d:"F"},
+  {n:10,t:"나는 조직화된 종교의 신자다.",d:"R"},
+  {n:11,t:"나는 소셜미디어를 자주 사용한다.",d:"R"},
+  {n:12,t:"숨길 것은 없지만, 내 삶은 되도록 남에게 드러내지 않고 싶다.",d:"F"},
+  {n:13,t:"나는 통념을 믿지 않는다. 그것은 집단 사고일 뿐이다.",d:"F"},
+  {n:14,t:"나는 사색을 하나의 활동으로 여긴다.",d:"F"},
+  {n:15,t:"나는 삶의 적극적 참여자가 아닌 관찰자다.",d:"F"},
+  {n:16,t:"나는 혼자 있는 것을 좋아하지 않는다.",d:"R"},
+  {n:17,t:"대부분의 사람이 내가 수줍음이 많다는 걸 모르는 것 같다.",d:"F"},
+  {n:18,t:"나는 밝은색 옷을 좋아한다. 그래야 군중 속에서 내가 두드러지기 때문이다.",d:"R"},
+  {n:19,t:"나는 주변 사람들로부터 관심받는 것을 좋아한다.",d:"R"},
+  {n:20,t:"다른 사람들의 의견은 내게 매우 중요하다.",d:"R"},
+  {n:21,t:"일하는 공간을 공유하면 아이디어를 나누기에 좋다고 생각한다.",d:"R"},
+  {n:22,t:"나는 다른 사람들이 내 의견에 동의할 때 기분이 좋다.",d:"R"},
+  {n:23,t:"나는 소수자가 되어도 개의치 않는다.",d:"F"},
+  {n:24,t:"나는 외부에서 주어진 생각을 따르기보다 내 삶을 이끌 나만의 철학을 세우는 편이다.",d:"F"},
+  {n:25,t:"나는 이해받기를 원한다.",d:"R"},
+  {n:26,t:"나는 가끔 내 생각이 두려울 때가 있다.",d:"F"},
+  {n:27,t:"나는 내 견해를 갖고 있으며 그것이 맞다고 생각한다.",d:"F"},
+  {n:28,t:"모든 질문에는 답이 있다고 생각한다.",d:"R"},
+  {n:29,t:"나는 어떤 생각이나 개념이든 스스로 검토해보기 전에는 받아들이지 않는다.",d:"F"},
+  {n:30,t:"나는 나 자신의 주인이어야 한다.",d:"F"},
+  {n:31,t:"모든 문제에는 가능한 여러 해결책이 있다고 생각한다.",d:"F"},
+  {n:32,t:"나는 선생님이나 상사는 언제나 옳다고 생각한다.",d:"R"},
+  {n:33,t:"나는 회의를 할 때 가장 좋은 아이디어가 떠오르곤 한다.",d:"R"},
+  {n:34,t:"나는 전문 분야 하나에만 집중하기보다 다방면에 관심이 많다.",d:"F"},
+  {n:35,t:"나는 스스로에게 의지한다. 타인에게 도움을 청하는 것은 내게 어려운 일이다.",d:"F"},
+  {n:36,t:"나에 관한 이야기를 공유할 때, 모든 세부 사항까지 정확히 전달하려 한다.",d:"R"},
+  {n:37,t:"진정한 지혜는 세대를 거쳐 내려오는 것뿐이라고 믿는다.",d:"R"},
+  {n:38,t:"나는 권위 있는 인물들을 깊이 존경한다.",d:"R"},
+  {n:39,t:"나는 새로운 생각을 좋아한다.",d:"F"},
+  {n:40,t:"나는 종종 스스로에게 질문을 던진다.",d:"F"},
+];
+
+const PP=5,TP=Math.ceil(QS.length/PP);
+let cp=0,ans={};
+const LB=[
+  {v:7,l:"매우 그렇다"},{v:6,l:"꽤 그렇다"},{v:5,l:"그렇다"},{v:4,l:"보통이다"},
+  {v:3,l:"그렇지 않다"},{v:2,l:"꽤 그렇지 않다"},{v:1,l:"전혀 그렇지 않다"}
+];
+
+function startQuiz(){
+  document.getElementById('landing').style.display='none';
+  document.getElementById('quiz').classList.add('active');
+  document.getElementById('nav-bar').style.display='block';
+  buildDots();render();
+}
+function buildDots(){
+  const c=document.getElementById('nav-dots');c.innerHTML='';
+  for(let i=0;i<TP;i++){
+    const d=document.createElement('div');
+    d.className='nav-dot'+(i===0?' active':'');
+    d.onclick=()=>{cp=i;render()};c.appendChild(d);
+  }
+}
+function render(){
+  const area=document.getElementById('questions-area');
+  const s=cp*PP,e=Math.min(s+PP,QS.length),qs=QS.slice(s,e);
+  let h=`<div class="q-group"><div class="q-group-header">PART ${cp+1} / ${TP}</div>`;
+  qs.forEach(q=>{
+    const done=ans[q.n]!==undefined,rev=q.d==='R';
+    h+=`<div class="q-card${done?' answered':''}" id="qc-${q.n}">`;
+    h+=`<div class="q-head"><span class="q-number">${q.n}.</span><span class="q-text">${q.t}</span></div>`;
+    h+=`<div class="scale">`;
+    LB.forEach(lb=>{
+      const ds=rev?(8-lb.v):lb.v;
+      const sel=ans[q.n]===ds?' selected':'';
+      h+=`<button class="scale-btn${sel}" onclick="pick(${q.n},${ds},this)">`;
+      h+=`<span class="score-num">${ds}</span><span class="score-label">${lb.l}</span></button>`;
+    });
+    h+=`</div></div>`;
+  });
+  h+=`</div>`;area.innerHTML=h;
+
+  document.getElementById('btn-prev').disabled=cp===0;
+  updNav();
+  document.querySelectorAll('.nav-dot').forEach((d,i)=>{
+    d.className='nav-dot';
+    if(i===cp)d.classList.add('active');
+    else if(pageDone(i))d.classList.add('done');
+  });
+  document.getElementById('page-label').textContent=`${cp+1} / ${TP}`;
+  updProg();window.scrollTo({top:0,behavior:'smooth'});
+}
+function updNav(){
+  const last=cp===TP-1;
+  const curDone=pageDone(cp);
+  const allDone=Object.keys(ans).length===40;
+  const nb=document.getElementById('btn-next');
+  nb.textContent=last?'결과 보기':'다음';
+  nb.disabled=last?!allDone:!curDone;
+}
+function pageDone(p){
+  const s=p*PP,e=Math.min(s+PP,QS.length);
+  for(let i=s;i<e;i++)if(ans[QS[i].n]===undefined)return false;return true;
+}
+function pick(n,score,el){
+  ans[n]=score;
+  const card=document.getElementById('qc-'+n);
+  card.classList.add('answered');
+  card.classList.remove('missed','shake');
+  card.querySelectorAll('.scale-btn').forEach(b=>b.classList.remove('selected'));
+  el.classList.add('selected');
+  updProg();updNav();
+}
+function updProg(){
+  const c=Object.keys(ans).length;
+  document.getElementById('answered-count').textContent=c;
+  document.getElementById('progress-fill').style.width=(c/40*100)+'%';
+}
+function changePage(d){
+  if(d===1&&!pageDone(cp)){
+    const s=cp*PP,e=Math.min(s+PP,QS.length);
+    let first=null;
+    for(let i=s;i<e;i++){
+      const q=QS[i],card=document.getElementById('qc-'+q.n);
+      if(ans[q.n]===undefined){
+        card.classList.add('missed','shake');
+        if(!first)first=card;
+        setTimeout(()=>card.classList.remove('shake'),400);
+      }
+    }
+    if(first)first.scrollIntoView({behavior:'smooth',block:'center'});
+    return;
+  }
+  if(cp===TP-1&&d===1){if(Object.keys(ans).length===40)showResult();return;}
+  cp=Math.max(0,Math.min(TP-1,cp+d));render();
+}
+function showResult(){
+  document.getElementById('quiz').style.display='none';
+  document.getElementById('nav-bar').style.display='none';
+  document.getElementById('result').classList.add('active');
+  const total=Object.values(ans).reduce((a,b)=>a+b,0);
+  const pct=(total-40)/240*100;
+  const is188=total>=188;
+  const emoji=is188?'🔮':'🪞';
+  const title=is188?'당신은 이향인입니다':'이향인은 아닙니다';
+  const desc=is188
+    ?'총점 <strong>'+total+'점</strong>으로, 기준 점수 188점을 넘었습니다.<br><br>당신은 이향인일 가능성이 큽니다. 이향인은 내향인도, 외향인도 아닌 — 에너지가 안이나 밖이 아닌 <strong>자기만의 방향</strong>으로 흐르는 사람입니다. 집단 속에 있어도 진정으로 속하지 않고, 혼자일 때 가장 자연스러워지는 사람. 그것은 결핍이 아니라 <strong>다른 구조</strong>입니다.<br><br>이 결과가 당신이 지닌 특별한 면모를 더 잘 이해하고, 기꺼이 받아들이는 계기가 되길 바랍니다.'
+    :'총점 <strong>'+total+'점</strong>으로, 기준 점수 188점에 미치지 못했습니다.<br><br>당신은 이향인이 아닐 가능성이 큽니다. 당신은 집단에 소속되는 것에서 안정감을 느끼거나, 내향·외향 중 한쪽의 에너지 방향이 비교적 뚜렷한 편입니다.<br><br>이 결과가 당신의 삶 속에, 혹은 주변에 있는 이향인들을 이해하고 존중하는 데 도움이 되길 바랍니다.';
+  document.getElementById('result-emoji').textContent=emoji;
+  document.getElementById('result-title').textContent=title;
+  document.getElementById('result-num').textContent=total;
+  document.getElementById('result-desc').innerHTML=desc;
+  // 미터 애니메이션
+  const fill=document.getElementById('meter-fill');
+  const tag=document.getElementById('meter-tag');
+  fill.className='meter-fill '+(is188?'pass':'fail');
+  tag.textContent=total+'점';
+  setTimeout(()=>{fill.style.width=pct+'%';},200);
+
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function toast(msg){
+  const t=document.createElement('div');
+  t.className='share-toast';t.textContent=msg;
+  document.body.appendChild(t);
+  setTimeout(()=>t.remove(),2000);
+}
+
+async function shareImage(){
+  const el=document.getElementById('result-capture');
+  try{
+    const canvas=await html2canvas(el,{backgroundColor:'#f6f3ee',scale:2,useCORS:true});
+    canvas.toBlob(async blob=>{
+      const file=new File([blob],'이향인결과.png',{type:'image/png'});
+      if(navigator.canShare&&navigator.canShare({files:[file]})){
+        try{await navigator.share({files:[file],title:'이향인 체크리스트 결과'})}
+        catch(e){if(e.name!=='AbortError')downloadBlob(blob)}
+      }else{downloadBlob(blob)}
+    },'image/png');
+  }catch(e){toast('이미지 생성에 실패했습니다')}
+}
+
+function downloadBlob(blob){
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download='이향인결과.png';a.click();
+  URL.revokeObjectURL(a.href);
+  toast('이미지가 저장되었습니다');
+}
+
+async function shareText(){
+  const title=document.getElementById('result-title').textContent;
+  const emoji=document.getElementById('result-emoji').textContent;
+  const score=document.getElementById('result-num').textContent;
+  const desc=document.getElementById('result-desc').innerText;
+  const text=`이향인 체크리스트 결과\n\n${emoji} ${title}\n총점: ${score} / 280 (기준: 188점)\n\n${desc}\n\n나도 테스트 해보기 → ${location.href}`;
+  if(navigator.share){
+    try{await navigator.share({text});return}catch(e){}
+  }
+  try{
+    await navigator.clipboard.writeText(text);
+    toast('클립보드에 복사되었습니다');
+  }catch(e){toast('공유에 실패했습니다')}
+}
+document.addEventListener('keydown',e=>{
+  if(!document.getElementById('quiz').classList.contains('active'))return;
+  if(e.key==='ArrowRight')changePage(1);
+  if(e.key==='ArrowLeft')changePage(-1);
+  const num=parseInt(e.key);
+  if(num>=1&&num<=7){
+    const s=cp*PP,end=Math.min(s+PP,QS.length);
+    const uq=QS.slice(s,end).find(q=>ans[q.n]===undefined);
+    if(!uq)return;
+    const card=document.getElementById('qc-'+uq.n);
+    const btn=Array.from(card.querySelectorAll('.scale-btn')).find(b=>
+      parseInt(b.querySelector('.score-num').textContent)===num
+    );
+    if(btn)pick(uq.n,num,btn);
+  }
+});
+</script>
+</body>
+</html>
