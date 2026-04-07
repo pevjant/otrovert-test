@@ -54,7 +54,7 @@ body::before{
 }
 .landing h1 em{font-family:'DM Serif Display',serif;font-style:italic;color:var(--accent)}
 .landing .desc{
-  font-size:1rem;line-height:2;color:var(--ink2);max-width:420px;margin-bottom:40px;
+  font-size:1rem;line-height:1.75;color:var(--ink2);max-width:420px;margin-bottom:40px;
 }
 .landing .desc strong{color:var(--ink);font-weight:700}
 .btn-start{
@@ -204,6 +204,13 @@ body::before{
 
 
 
+/* ── Share Card (offscreen, captured by html2canvas) ── */
+#share-card{
+  position:fixed;left:-9999px;top:0;
+  font-family:'Noto Sans KR',sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+
 .btn-retry{
   display:block;margin:40px auto 0;
   padding:14px 32px;border:1.5px solid var(--rule);border-radius:var(--radius);
@@ -316,6 +323,129 @@ body::before{
     </div>
 
     <button class="btn-retry" onclick="location.reload()">다시 테스트하기</button>
+  </div>
+</div>
+
+<!-- ── Share Card (offscreen) ── -->
+<div id="share-card">
+  <div id="share-card-inner" style="
+    width:420px;
+    background:#f6f3ee;
+    position:relative;
+    font-family:'Noto Sans KR',sans-serif;
+    -webkit-font-smoothing:antialiased;
+  ">
+    <!-- Top accent gradient bar -->
+    <div style="height:4px;background:linear-gradient(90deg,#c4553a 0%,#d4755f 50%,#c4553a 100%);"></div>
+
+    <!-- Header area -->
+    <div style="
+      background:linear-gradient(175deg,#ede9e1 0%,#f0ece5 60%,#f6f3ee 100%);
+      padding:32px 36px 24px;
+      text-align:center;
+    ">
+      <!-- Kicker with decorative lines -->
+      <div style="
+        display:flex;align-items:center;justify-content:center;gap:10px;
+        margin-bottom:22px;
+      ">
+        <div style="flex:1;height:1px;background:linear-gradient(90deg,transparent,#c4553a);max-width:48px;"></div>
+        <span style="
+          font-size:9px;font-weight:700;letter-spacing:4px;
+          color:#c4553a;text-transform:uppercase;
+          font-family:'Noto Sans KR',sans-serif;
+        ">당신의 유형</span>
+        <div style="flex:1;height:1px;background:linear-gradient(90deg,#c4553a,transparent);max-width:48px;"></div>
+      </div>
+
+      <!-- Emoji -->
+      <div id="sc-emoji" style="
+        font-size:52px;line-height:1;margin-bottom:14px;
+        filter:drop-shadow(0 2px 8px rgba(196,85,58,0.18));
+        display:block;
+      ">🔮</div>
+
+      <!-- Title -->
+      <div id="sc-title" style="
+        font-family:'Noto Serif KR',serif;font-weight:900;
+        font-size:22px;line-height:1.45;color:#1a1a1a;
+        margin-bottom:18px;letter-spacing:-0.3px;
+      ">당신은 이향인입니다</div>
+
+      <!-- Score display -->
+      <div style="display:flex;align-items:baseline;justify-content:center;gap:4px;margin-bottom:14px;">
+        <span id="sc-score" style="
+          font-family:'DM Serif Display',serif;
+          font-size:44px;color:#c4553a;line-height:1;
+        ">280</span>
+        <span style="font-size:13px;color:#b5b0a8;font-family:'Noto Sans KR',sans-serif;">/ 280</span>
+      </div>
+
+      <!-- Meter bar -->
+      <div style="max-width:280px;margin:0 auto 6px;">
+        <div style="
+          height:6px;border-radius:3px;
+          background:#d5d0c8;
+          position:relative;overflow:hidden;
+        ">
+          <div id="sc-meter" style="
+            height:100%;border-radius:3px;
+            background:linear-gradient(90deg,#d6e8e0,#3a6b5a);
+            width:50%;
+            position:relative;z-index:1;
+          "></div>
+        </div>
+        <!-- Threshold marker (separate element, outside overflow:hidden parent) -->
+        <div style="position:relative;height:0;">
+          <div style="
+            position:absolute;
+            left:61.67%;top:-10px;
+            width:2px;height:16px;
+            background:#c4553a;
+            border-radius:1px;
+            transform:translateX(-50%);
+          "></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:9px;color:#b5b0a8;margin-top:10px;font-family:'Noto Sans KR',sans-serif;">
+          <span>40</span>
+          <span style="color:#c4553a;font-weight:700;font-size:9px;">기준 188</span>
+          <span>280</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <div style="height:1px;background:#d5d0c8;margin:0 32px;"></div>
+
+    <!-- Description area -->
+    <div style="padding:22px 36px 26px;background:#f6f3ee;">
+      <!-- Opening quote mark -->
+      <div style="text-align:center;margin-bottom:8px;">
+        <span style="font-family:'DM Serif Display',serif;font-size:28px;color:#d5d0c8;line-height:1;">"</span>
+      </div>
+      <p id="sc-desc" style="
+        font-size:13px;line-height:2.1;
+        color:#4a4540;
+        text-align:center;
+        word-break:keep-all;
+        font-family:'Noto Sans KR',sans-serif;
+        margin:0;
+      "></p>
+    </div>
+
+    <!-- Footer -->
+    <div style="
+      padding:12px 28px;
+      background:#ede9e1;
+      display:flex;align-items:center;justify-content:space-between;
+      border-top:1px solid #d5d0c8;
+    ">
+      <span style="font-size:10px;color:#8a8580;letter-spacing:0.3px;font-family:'Noto Sans KR',sans-serif;">이향인 체크리스트</span>
+      <div style="display:flex;align-items:center;gap:6px;">
+        <div style="width:16px;height:1px;background:#c4553a;opacity:0.5;"></div>
+        <span style="font-size:9px;color:#b5b0a8;font-family:'Noto Sans KR',sans-serif;letter-spacing:0.5px;">라미 카민스키 박사 기반</span>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -498,10 +628,47 @@ function toast(msg){
   setTimeout(()=>t.remove(),2000);
 }
 
+function populateShareCard(){
+  const emoji=document.getElementById('result-emoji').textContent;
+  const title=document.getElementById('result-title').textContent;
+  const score=parseInt(document.getElementById('result-num').textContent)||0;
+  const is188=score>=188;
+
+  document.getElementById('sc-emoji').textContent=emoji;
+  document.getElementById('sc-title').textContent=title;
+  document.getElementById('sc-score').textContent=score;
+
+  const pct=Math.max(0,Math.min(100,(score-40)/240*100));
+  const meter=document.getElementById('sc-meter');
+  meter.style.width=pct+'%';
+  meter.style.background=is188
+    ?'linear-gradient(90deg,#d6e8e0,#3a6b5a)'
+    :'linear-gradient(90deg,#f0ddd6,#d5d0c8)';
+
+  // CRITICAL: use innerHTML to preserve <strong> bold and <br> line breaks
+  const descEl=document.getElementById('result-desc');
+  const scDesc=document.getElementById('sc-desc');
+  scDesc.innerHTML=descEl.innerHTML;
+  // Ensure strong tags inside render with correct inline styles for html2canvas
+  scDesc.querySelectorAll('strong').forEach(s=>{
+    s.style.color='#1a1a1a';
+    s.style.fontWeight='700';
+  });
+}
+
 async function shareImage(){
-  const el=document.getElementById('result-capture');
+  populateShareCard();
+  const card=document.getElementById('share-card-inner');
+  // Brief delay so layout settles before capture
+  await new Promise(r=>setTimeout(r,80));
   try{
-    const canvas=await html2canvas(el,{backgroundColor:'#f6f3ee',scale:2,useCORS:true});
+    const canvas=await html2canvas(card,{
+      backgroundColor:null,
+      scale:2,
+      useCORS:true,
+      allowTaint:true,
+      logging:false,
+    });
     canvas.toBlob(async blob=>{
       const file=new File([blob],'이향인결과.png',{type:'image/png'});
       if(navigator.canShare&&navigator.canShare({files:[file]})){
