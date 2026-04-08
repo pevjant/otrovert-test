@@ -6,6 +6,7 @@
 <title>이향인 체크리스트 — 외향인도 내향인도 아닌, 제3의 기질</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700;900&family=Noto+Sans+KR:wght@300;400;500;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
@@ -483,6 +484,10 @@ html.dark-mode .meter-dot{box-shadow:0 0 0 2px var(--bg)}
     <div id="sc-circle3" style="position:absolute;top:0px;right:0px;width:200px;height:200px;border-radius:50%;border:1px solid rgba(196,85,58,0.05);pointer-events:none;"></div>
     <div id="sc-circle4" style="position:absolute;top:30px;right:30px;width:140px;height:140px;border-radius:50%;border:1px solid rgba(196,85,58,0.04);pointer-events:none;"></div>
     <div id="sc-circle5" style="position:absolute;top:60px;right:60px;width:80px;height:80px;border-radius:50%;border:1px solid rgba(196,85,58,0.04);pointer-events:none;"></div>
+    <!-- I/O/E letters on circles -->
+    <span id="sc-letter-i" style="position:absolute;top:100px;right:200px;font-family:'DM Serif Display',serif;font-style:italic;font-size:36px;color:rgba(196,85,58,0.12);transform:rotate(-15deg);pointer-events:none;"><span style="font-weight:400">I</span><span style="font-size:0.7em;margin-left:1px">?</span></span>
+    <span id="sc-letter-o" style="position:absolute;top:150px;right:130px;font-family:'DM Serif Display',serif;font-style:italic;font-size:42px;color:rgba(196,85,58,0.12);transform:rotate(5deg);pointer-events:none;"><span style="font-weight:400">O</span><span id="sc-letter-o-q" style="font-size:0.7em;margin-left:1px">?</span></span>
+    <span id="sc-letter-e" style="position:absolute;top:90px;right:40px;font-family:'DM Serif Display',serif;font-style:italic;font-size:34px;color:rgba(196,85,58,0.12);transform:rotate(12deg);pointer-events:none;"><span style="font-weight:400">E</span><span style="font-size:0.7em;margin-left:1px">?</span></span>
     <!-- Top accent bar -->
     <div id="sc-accent-bar" style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#e8a87c,#c4553a,#a04030);"></div>
     <!-- Card content -->
@@ -526,10 +531,26 @@ html.dark-mode .meter-dot{box-shadow:0 0 0 2px var(--bg)}
         <p id="sc-desc-accent" style="font-family:'Noto Serif KR',serif;font-weight:900;font-size:12px;line-height:1.5;color:#c4553a;margin:0 0 10px 0;letter-spacing:-0.01em;"></p>
         <p id="sc-desc-close" style="font-weight:400;font-size:10.5px;line-height:1.65;color:#8a8580;margin:0;letter-spacing:0.01em;"></p>
       </div>
-      <!-- Footer -->
-      <div id="sc-footer" style="margin-top:20px;padding-top:14px;border-top:1px solid #ece8e3;display:flex;justify-content:space-between;align-items:center;">
-        <span id="sc-footer-left" style="font-family:'Noto Sans KR',sans-serif;font-weight:300;font-size:9px;color:#b5b0a8;letter-spacing:0.06em;">라미 카민스키 박사 기반</span>
-        <span id="sc-footer-cta" style="font-family:'Noto Sans KR',sans-serif;font-weight:500;font-size:9.5px;color:#c4553a;letter-spacing:0.03em;">나도 테스트 해보기 →</span>
+      <!-- Footer: reference + book cover + QR codes -->
+      <div id="sc-footer" style="margin-top:20px;padding-top:14px;border-top:1px solid #ece8e3;">
+        <p id="sc-reference" style="font-family:'Noto Sans KR',sans-serif;font-weight:300;font-size:9px;color:#b5b0a8;letter-spacing:0.03em;margin:0 0 14px 0;">라미 카민스키 박사의 이향인 도서에서 참조하였습니다.</p>
+        <div style="display:flex;align-items:flex-end;gap:16px;">
+          <!-- Book cover -->
+          <img id="sc-book-cover" src="assets/book-cover.jpg" style="width:70px;height:auto;border-radius:4px;box-shadow:0 1px 4px rgba(0,0,0,0.12);">
+          <!-- Book QR -->
+          <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+            <span style="font-family:'Noto Sans KR',sans-serif;font-weight:400;font-size:8px;color:#8a8580;letter-spacing:0.03em;">책 보러가기 ↓</span>
+            <canvas id="sc-qr-book" style="width:56px;height:56px;"></canvas>
+          </div>
+          <!-- spacer -->
+          <div style="flex:1;"></div>
+          <!-- Test QR — URL sits below the alignment baseline -->
+          <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+            <span style="font-family:'Noto Sans KR',sans-serif;font-weight:400;font-size:8px;color:#8a8580;letter-spacing:0.03em;">나도 테스트 해보기 ↓</span>
+            <canvas id="sc-qr-test" style="width:56px;height:56px;"></canvas>
+            <span id="sc-url-label" style="font-family:'Noto Sans KR',sans-serif;font-weight:300;font-size:7px;color:#b5b0a8;letter-spacing:0.02em;margin-bottom:-16px;"></span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -874,8 +895,47 @@ function populateShareCard(){
 
   // Footer
   document.getElementById('sc-footer').style.borderTopColor=T.footerBorder;
-  document.getElementById('sc-footer-left').style.color=T.footerLeft;
-  document.getElementById('sc-footer-cta').style.color=T.footerCta;
+  document.getElementById('sc-reference').style.color=T.footerLeft;
+
+  // I/O/E letters — match result state
+  var scI=document.getElementById('sc-letter-i');
+  var scO=document.getElementById('sc-letter-o');
+  var scE=document.getElementById('sc-letter-e');
+  if(is188){
+    scO.style.color='rgba(196,85,58,0.45)';scO.style.transform='rotate(5deg) scale(1.25)';
+    document.getElementById('sc-letter-o-q').style.display='none';
+    scI.style.color='rgba(196,85,58,0.06)';scI.style.transform='rotate(-15deg) scale(1)';
+    scE.style.color='rgba(196,85,58,0.06)';scE.style.transform='rotate(12deg) scale(1)';
+  }else{
+    scI.style.color='rgba(138,133,128,0.35)';scI.style.transform='rotate(-15deg) scale(1.15)';
+    scE.style.color='rgba(138,133,128,0.35)';scE.style.transform='rotate(12deg) scale(1.15)';
+    scO.style.color='rgba(138,133,128,0.05)';scO.style.transform='rotate(5deg) scale(1)';
+    document.getElementById('sc-letter-o-q').style.display='';
+    for(var ci=1;ci<=5;ci++){
+      document.getElementById('sc-circle'+ci).style.borderColor='rgba(181,176,168,'+[0.08,0.07,0.06,0.05,0.04][ci-1]+')';
+    }
+  }
+
+  // QR codes — render at high resolution (256px canvas → 64px CSS display = 4x crisp)
+  function renderQR(canvasId,url,size){
+    var qr=qrcode(0,'M');
+    qr.addData(url);
+    qr.make();
+    var cv=document.getElementById(canvasId);
+    var ctx=cv.getContext('2d');
+    var mc=qr.getModuleCount();
+    var cs=Math.ceil(size/mc);
+    cv.width=cs*mc;cv.height=cs*mc;
+    ctx.fillStyle='#ffffff';
+    ctx.fillRect(0,0,cv.width,cv.height);
+    ctx.fillStyle='#1a1a1a';
+    for(var r=0;r<mc;r++)for(var c=0;c<mc;c++)if(qr.isDark(r,c))ctx.fillRect(c*cs,r*cs,cs,cs);
+  }
+  renderQR('sc-qr-book','https://product.kyobobook.co.kr/detail/S000219435754',256);
+  renderQR('sc-qr-test',location.href,256);
+
+  // URL label
+  try{document.getElementById('sc-url-label').textContent=new URL(location.href).host;}catch(e){document.getElementById('sc-url-label').textContent=location.host;}
 }
 
 async function shareImage(){
@@ -886,7 +946,7 @@ async function shareImage(){
   try{
     const canvas=await html2canvas(card,{
       backgroundColor:null,
-      scale:2,
+      scale:3,
       useCORS:true,
       allowTaint:true,
       logging:false,
@@ -923,6 +983,11 @@ async function shareText(){
     toast('클립보드에 복사되었습니다');
   }catch(e){toast('공유에 실패했습니다')}
 }
+// Debug mode via ?debug=true
+if(new URLSearchParams(location.search).has('debug')){
+  document.getElementById('debug-panel').style.display='';
+}
+
 // Landing bounce — sequential with delay between: I → pause → O → pause → E
 setTimeout(()=>{
   const letters=[document.getElementById('gl-i'),document.getElementById('gl-e'),document.getElementById('gl-o')];
