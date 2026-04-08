@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Concentric circles -->
+  <circle cx="42" cy="20" r="38" fill="none" stroke="rgba(196,85,58,0.35)" stroke-width="1.5"/>
+  <circle cx="42" cy="20" r="30" fill="none" stroke="rgba(196,85,58,0.40)" stroke-width="1.5"/>
+  <circle cx="42" cy="20" r="22" fill="none" stroke="rgba(196,85,58,0.45)" stroke-width="1.5"/>
+  <circle cx="42" cy="20" r="14" fill="none" stroke="rgba(196,85,58,0.50)" stroke-width="1.5"/>
+  <!-- I? -->
+  <text x="30" y="24" font-family="Georgia,serif" font-style="italic" font-size="18" fill="rgba(170,60,40,0.6)" transform="rotate(-15,14,32)">I<tspan font-size="11" dy="-2">?</tspan></text>
+  <!-- O? -->
+  <text x="24" y="52" font-family="Georgia,serif" font-style="italic" font-size="22" fill="rgba(170,60,40,0.6)" transform="rotate(5,24,52)">O<tspan font-size="13" dy="-2">?</tspan></text>
+  <!-- E? -->
+  <text x="48" y="32" font-family="Georgia,serif" font-style="italic" font-size="16" fill="rgba(170,60,40,0.6)" transform="rotate(12,46,30)">E<tspan font-size="10" dy="-2">?</tspan></text>
+</svg>

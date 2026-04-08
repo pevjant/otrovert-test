@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>이향인 체크리스트 — 외향인도 내향인도 아닌, 제3의 기질</title>
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700;900&family=Noto+Sans+KR:wght@300;400;500;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
@@ -160,10 +161,10 @@ body::before{
 /* ── Circles (shared across pages) ── */
 .circles-wrap{position:fixed;top:-60px;pointer-events:none;width:320px;height:320px;overflow:visible;z-index:0;left:calc(100vw - 260px)}
 .circles-wrap div.circ{position:absolute;border-radius:50%;border:1px solid rgba(196,85,58,0.06)}
-.circles-wrap .c1{width:320px;height:320px;top:0;right:0}
-.circles-wrap .c2{width:260px;height:260px;top:30px;right:30px}
-.circles-wrap .c3{width:200px;height:200px;top:60px;right:60px}
-.circles-wrap .c4{width:140px;height:140px;top:90px;right:90px}
+.circles-wrap .c1{width:300px;height:300px;top:0;right:0}
+.circles-wrap .c2{width:220px;height:220px;top:40px;right:40px}
+.circles-wrap .c3{width:150px;height:150px;top:75px;right:75px}
+.circles-wrap .c4{width:80px;height:80px;top:110px;right:110px}
 .circles-wrap.fail div.circ{border-color:rgba(181,176,168,0.08)}
 /* Letters on circles */
 .circle-letter{
@@ -176,10 +177,7 @@ body::before{
 }
 .circle-letter .letter-main{font-weight:400}
 .circle-letter .letter-q{font-size:0.7em;margin-left:1px}
-/* Letter positions — large, I O E left to right across circles */
-.circle-letter.letter-i{top:130px;left:50px;font-size:48px;color:rgba(196,85,58,0.12);--rot:rotate(-15deg);transform:var(--rot);transform-origin:center center}
-.circle-letter.letter-o{top:190px;left:120px;font-size:56px;color:rgba(196,85,58,0.12);--rot:rotate(5deg);transform:var(--rot);transform-origin:center center}
-.circle-letter.letter-e{top:120px;left:210px;font-size:44px;color:rgba(196,85,58,0.12);--rot:rotate(12deg);transform:var(--rot);transform-origin:center center}
+/* Letter positions — applied inline by JS from LETTERS constant */
 /* Bounce animation — 2 jumps, second smaller */
 @keyframes letterBounce{
   0%{transform:var(--rot) translateY(0)}
@@ -485,9 +483,9 @@ html.dark-mode .meter-dot{box-shadow:0 0 0 2px var(--bg)}
     <div id="sc-circle4" style="position:absolute;top:30px;right:30px;width:140px;height:140px;border-radius:50%;border:1px solid rgba(196,85,58,0.04);pointer-events:none;"></div>
     <div id="sc-circle5" style="position:absolute;top:60px;right:60px;width:80px;height:80px;border-radius:50%;border:1px solid rgba(196,85,58,0.04);pointer-events:none;"></div>
     <!-- I/O/E letters on circles -->
-    <span id="sc-letter-i" style="position:absolute;top:100px;right:200px;font-family:'DM Serif Display',serif;font-style:italic;font-size:36px;color:rgba(196,85,58,0.12);transform:rotate(-15deg);pointer-events:none;"><span style="font-weight:400">I</span><span style="font-size:0.7em;margin-left:1px">?</span></span>
-    <span id="sc-letter-o" style="position:absolute;top:150px;right:130px;font-family:'DM Serif Display',serif;font-style:italic;font-size:42px;color:rgba(196,85,58,0.12);transform:rotate(5deg);pointer-events:none;"><span style="font-weight:400">O</span><span id="sc-letter-o-q" style="font-size:0.7em;margin-left:1px">?</span></span>
-    <span id="sc-letter-e" style="position:absolute;top:90px;right:40px;font-family:'DM Serif Display',serif;font-style:italic;font-size:34px;color:rgba(196,85,58,0.12);transform:rotate(12deg);pointer-events:none;"><span style="font-weight:400">E</span><span style="font-size:0.7em;margin-left:1px">?</span></span>
+    <span id="sc-letter-i" style="position:absolute;top:68px;right:210px;font-family:'DM Serif Display',serif;font-style:italic;font-size:36px;color:rgba(196,85,58,0.12);transform:rotate(-15deg);pointer-events:none;"><span style="font-weight:400">I</span><span style="font-size:0.7em;margin-left:1px">?</span></span>
+    <span id="sc-letter-o" style="position:absolute;top:130px;right:130px;font-family:'DM Serif Display',serif;font-style:italic;font-size:42px;color:rgba(196,85,58,0.12);transform:rotate(5deg);pointer-events:none;"><span style="font-weight:400">O</span><span id="sc-letter-o-q" style="font-size:0.7em;margin-left:1px">?</span></span>
+    <span id="sc-letter-e" style="position:absolute;top:150px;right:30px;font-family:'DM Serif Display',serif;font-style:italic;font-size:34px;color:rgba(196,85,58,0.12);transform:rotate(12deg);pointer-events:none;"><span style="font-weight:400">E</span><span style="font-size:0.7em;margin-left:1px">?</span></span>
     <!-- Top accent bar -->
     <div id="sc-accent-bar" style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#e8a87c,#c4553a,#a04030);"></div>
     <!-- Card content -->
@@ -540,14 +538,14 @@ html.dark-mode .meter-dot{box-shadow:0 0 0 2px var(--bg)}
           <!-- Book QR -->
           <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
             <span style="font-family:'Noto Sans KR',sans-serif;font-weight:400;font-size:8px;color:#8a8580;letter-spacing:0.03em;">책 보러가기 ↓</span>
-            <canvas id="sc-qr-book" style="width:56px;height:56px;"></canvas>
+            <canvas id="sc-qr-book" style="width:72px;height:72px;"></canvas>
           </div>
           <!-- spacer -->
           <div style="flex:1;"></div>
           <!-- Test QR — URL sits below the alignment baseline -->
           <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
             <span style="font-family:'Noto Sans KR',sans-serif;font-weight:400;font-size:8px;color:#8a8580;letter-spacing:0.03em;">나도 테스트 해보기 ↓</span>
-            <canvas id="sc-qr-test" style="width:56px;height:56px;"></canvas>
+            <canvas id="sc-qr-test" style="width:72px;height:72px;"></canvas>
             <span id="sc-url-label" style="font-family:'Noto Sans KR',sans-serif;font-weight:300;font-size:7px;color:#b5b0a8;letter-spacing:0.02em;margin-bottom:-16px;"></span>
           </div>
         </div>
@@ -565,6 +563,50 @@ html.dark-mode .meter-dot{box-shadow:0 0 0 2px var(--bg)}
 </div>
 
 <script>
+// ── Letter & Circle layout constants ──
+// 메인 페이지(px 기준 320x320 영역)와 공유 카드 양쪽에 적용됨
+const LETTERS = {
+  I: { top: 90, left: 110, size: 48, rot: -15 },
+  O: { top: 190, left: 120, size: 56, rot: 5 },
+  E: { top: 140, left: 200, size: 44, rot: 12 },
+};
+// 공유 카드용 스케일 (카드 420px 기준, 메인 대비 비율)
+const SC_SCALE = 0.75;
+const SC_OFFSET = { top: -30, right: -30 }; // 카드 내 원 중심 오프셋
+
+// 메인 페이지 글자 위치 적용 (인라인 스타일로 직접 적용)
+(function applyLetterLayout(){
+  var map = {I:'gl-i', O:'gl-o', E:'gl-e'};
+  for(var k in map){
+    var L = LETTERS[k];
+    var el = document.getElementById(map[k]);
+    if(!el) continue;
+    el.style.top = L.top+'px';
+    el.style.left = L.left+'px';
+    el.style.fontSize = L.size+'px';
+    el.style.color = 'rgba(196,85,58,0.12)';
+    el.style.setProperty('--rot','rotate('+L.rot+'deg)');
+    el.style.transform = 'rotate('+L.rot+'deg)';
+    el.style.transformOrigin = 'center center';
+  }
+})();
+
+// 공유 카드 글자 위치 적용
+function applyShareCardLetters(){
+  var items = {I:'sc-letter-i', O:'sc-letter-o', E:'sc-letter-e'};
+  for(var k in items){
+    var L = LETTERS[k];
+    var el = document.getElementById(items[k]);
+    // 메인: left 기준 → 공유카드: right 기준으로 변환 (320 - left - fontSize*0.6)
+    var rightVal = Math.round((320 - L.left - L.size*0.6) * SC_SCALE);
+    var topVal = Math.round(L.top * SC_SCALE + SC_OFFSET.top);
+    el.style.top = topVal + 'px';
+    el.style.right = rightVal + 'px';
+    el.style.fontSize = Math.round(L.size * SC_SCALE) + 'px';
+    el.style.transform = 'rotate(' + L.rot + 'deg)';
+  }
+}
+
 const QS=[
   {n:1,t:"나는 사람들이 많이 모인 곳에 있으면 외로움을 느낀다.",d:"F"},
   {n:2,t:"내 삶에서 진정으로 가까운 사람은 극소수다.",d:"F"},
@@ -897,7 +939,8 @@ function populateShareCard(){
   document.getElementById('sc-footer').style.borderTopColor=T.footerBorder;
   document.getElementById('sc-reference').style.color=T.footerLeft;
 
-  // I/O/E letters — match result state
+  // I/O/E letters — position from constants, then match result state
+  applyShareCardLetters();
   var scI=document.getElementById('sc-letter-i');
   var scO=document.getElementById('sc-letter-o');
   var scE=document.getElementById('sc-letter-e');
@@ -931,11 +974,11 @@ function populateShareCard(){
     ctx.fillStyle='#1a1a1a';
     for(var r=0;r<mc;r++)for(var c=0;c<mc;c++)if(qr.isDark(r,c))ctx.fillRect(c*cs,r*cs,cs,cs);
   }
-  renderQR('sc-qr-book','https://product.kyobobook.co.kr/detail/S000219435754',256);
-  renderQR('sc-qr-test',location.href,256);
+  renderQR('sc-qr-book','https://product.kyobobook.co.kr/detail/S000219435754',512);
+  renderQR('sc-qr-test',location.href,512);
 
   // URL label
-  try{document.getElementById('sc-url-label').textContent=new URL(location.href).host;}catch(e){document.getElementById('sc-url-label').textContent=location.host;}
+  try{var u=new URL(location.href);document.getElementById('sc-url-label').textContent=u.host+u.pathname.replace(/\/$/,'');}catch(e){document.getElementById('sc-url-label').textContent=location.host+location.pathname.replace(/\/$/,'');}
 }
 
 async function shareImage(){
