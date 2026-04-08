@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Option 2: Light Minimal + Bold Typography</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Noto+Sans+KR:wght@300;400;700&family=Noto+Serif+KR:wght@900&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #e8e6e2;
+      font-family: 'Noto Sans KR', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 48px 24px;
+    }
+    .page-title {
+      font-family: 'Noto Sans KR', sans-serif;
+      font-weight: 300;
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #888;
+      margin-bottom: 40px;
+    }
+    .cards-wrapper {
+      display: flex;
+      gap: 32px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .card-label {
+      font-family: 'Noto Sans KR', sans-serif;
+      font-weight: 300;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #aaa;
+      text-align: center;
+      margin-bottom: 12px;
+    }
+  </style>
+</head>
+<body>
+
+  <p class="page-title">Option 2: Light Minimal + Bold Typography</p>
+
+  <div class="cards-wrapper">
+
+    <!-- PASS CARD -->
+    <div>
+      <p class="card-label">Pass — Score 220</p>
+      <div style="
+        width: 420px;
+        height: 420px;
+        background: #faf8f5;
+        border-radius: 4px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        box-shadow: 0 2px 24px rgba(0,0,0,0.10);
+      ">
+        <!-- Top accent bar -->
+        <div style="
+          width: 100%;
+          height: 3px;
+          background: #c4553a;
+          flex-shrink: 0;
+        "></div>
+
+        <!-- Main content area -->
+        <div style="
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          padding: 36px 40px 28px 40px;
+        ">
+
+          <!-- Emoji + status row -->
+          <div style="
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+          ">
+            <span style="
+              font-size: 22px;
+              line-height: 1;
+            ">🌗</span>
+            <span style="
+              font-family: 'Noto Sans KR', sans-serif;
+              font-weight: 700;
+              font-size: 10px;
+              letter-spacing: 0.18em;
+              text-transform: uppercase;
+              color: #c4553a;
+              background: rgba(196,85,58,0.08);
+              padding: 5px 10px;
+              border-radius: 2px;
+            ">이향인 확인됨</span>
+          </div>
+
+          <!-- Divider -->
+          <div style="width: 100%; height: 1px; background: #e8e4de; margin-bottom: 24px;"></div>
+
+          <!-- Score hero -->
+          <div style="
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            margin-bottom: 6px;
+          ">
+            <span style="
+              font-family: 'DM Serif Display', serif;
+              font-size: 96px;
+              line-height: 0.9;
+              color: #1a1714;
+              letter-spacing: -0.02em;
+            ">220</span>
+            <div style="display: flex; flex-direction: column; gap: 2px;">
+              <span style="
+                font-family: 'Noto Sans KR', sans-serif;
+                font-weight: 300;
+                font-size: 11px;
+                color: #b0a89e;
+                letter-spacing: 0.06em;
+              ">/ 300</span>
+              <span style="
+                font-family: 'Noto Sans KR', sans-serif;
+                font-weight: 700;
+                font-size: 9px;
+                letter-spacing: 0.14em;
+                text-transform: uppercase;
+                color: #c4553a;
+              ">점</span>
+            </div>
+          </div>
+
+          <!-- Meter bar -->
+          <div style="
+            width: 100%;
+            height: 3px;
+            background: #e8e4de;
+            border-radius: 2px;
+            margin-bottom: 28px;
+            overflow: hidden;
+          ">
+            <div style="
+              width: 73.3%;
+              height: 100%;
+              background: linear-gradient(90deg, #c4553a, #d4705a);
+              border-radius: 2px;
+            "></div>
+          </div>
+
+          <!-- Divider -->
+          <div style="width: 100%; height: 1px; background: #e8e4de; margin-bottom: 24px;"></div>
+
+          <!-- Title -->
+          <div style="flex: 1;">
+            <p style="
+              font-family: 'Noto Serif KR', serif;
+              font-weight: 900;
+              font-size: 22px;
+              line-height: 1.35;
+              color: #1a1714;
+              letter-spacing: -0.01em;
+              margin-bottom: 10px;
+            ">당신은<br>이향인입니다</p>
+            <p style="
+              font-family: 'Noto Sans KR', sans-serif;
+              font-weight: 300;
+              font-size: 12px;
+              color: #9a9188;
+              line-height: 1.7;
+              letter-spacing: 0.02em;
+            ">내향과 외향 사이,<br>당신만의 리듬으로 삽니다</p>
+          </div>
+
+        </div>
+
+        <!-- Footer -->
+        <div style="
+          padding: 0 40px 20px 40px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        ">
+          <span style="
+            font-family: 'Noto Sans KR', sans-serif;
+            font-weight: 300;
+            font-size: 10px;
+            letter-spacing: 0.12em;
+            color: #c4c0b8;
+            text-transform: uppercase;
+          ">이향인 체크리스트</span>
+          <div style="
+            width: 18px;
+            height: 18px;
+            border: 1.5px solid #c4553a;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          ">
+            <div style="
+              width: 7px;
+              height: 7px;
+              background: #c4553a;
+              border-radius: 50%;
+            "></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- FAIL CARD -->
+    <div>
+      <p class="card-label">Fail — Score 155</p>
+      <div style="
+        width: 420px;
+        height: 420px;
+        background: #faf8f5;
+        border-radius: 4px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        box-shadow: 0 2px 24px rgba(0,0,0,0.10);
+      ">
+        <!-- Top accent bar (muted) -->
+        <div style="
+          width: 100%;
+          height: 3px;
+          background: #c2bdb6;
+          flex-shrink: 0;
+        "></div>
+
+        <!-- Main content area -->
+        <div style="
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          padding: 36px 40px 28px 40px;
+        ">
+
+          <!-- Emoji + status row -->
+          <div style="
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+          ">
+            <span style="
+              font-size: 22px;
+              line-height: 1;
+              filter: grayscale(1) opacity(0.55);
+            ">🌗</span>
+            <span style="
+              font-family: 'Noto Sans KR', sans-serif;
+              font-weight: 700;
+              font-size: 10px;
+              letter-spacing: 0.18em;
+              text-transform: uppercase;
+              color: #8a847c;
+              background: rgba(138,132,124,0.08);
+              padding: 5px 10px;
+              border-radius: 2px;
+            ">해당 없음</span>
+          </div>
+
+          <!-- Divider -->
+          <div style="width: 100%; height: 1px; background: #e8e4de; margin-bottom: 24px;"></div>
+
+          <!-- Score hero -->
+          <div style="
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            margin-bottom: 6px;
+          ">
+            <span style="
+              font-family: 'DM Serif Display', serif;
+              font-size: 96px;
+              line-height: 0.9;
+              color: #a8a29a;
+              letter-spacing: -0.02em;
+            ">155</span>
+            <div style="display: flex; flex-direction: column; gap: 2px;">
+              <span style="
+                font-family: 'Noto Sans KR', sans-serif;
+                font-weight: 300;
+                font-size: 11px;
+                color: #c8c4bc;
+                letter-spacing: 0.06em;
+              ">/ 300</span>
+              <span style="
+                font-family: 'Noto Sans KR', sans-serif;
+                font-weight: 700;
+                font-size: 9px;
+                letter-spacing: 0.14em;
+                text-transform: uppercase;
+                color: #a8a29a;
+              ">점</span>
+            </div>
+          </div>
+
+          <!-- Meter bar -->
+          <div style="
+            width: 100%;
+            height: 3px;
+            background: #e8e4de;
+            border-radius: 2px;
+            margin-bottom: 28px;
+            overflow: hidden;
+          ">
+            <div style="
+              width: 51.6%;
+              height: 100%;
+              background: linear-gradient(90deg, #c2bdb6, #d0cbc4);
+              border-radius: 2px;
+            "></div>
+          </div>
+
+          <!-- Divider -->
+          <div style="width: 100%; height: 1px; background: #e8e4de; margin-bottom: 24px;"></div>
+
+          <!-- Title -->
+          <div style="flex: 1;">
+            <p style="
+              font-family: 'Noto Serif KR', serif;
+              font-weight: 900;
+              font-size: 22px;
+              line-height: 1.35;
+              color: #7a7470;
+              letter-spacing: -0.01em;
+              margin-bottom: 10px;
+            ">이향인이<br>아닙니다</p>
+            <p style="
+              font-family: 'Noto Sans KR', sans-serif;
+              font-weight: 300;
+              font-size: 12px;
+              color: #b8b4ac;
+              line-height: 1.7;
+              letter-spacing: 0.02em;
+            ">더 뚜렷한 내향 또는<br>외향의 성향을 가지고 있습니다</p>
+          </div>
+
+        </div>
+
+        <!-- Footer -->
+        <div style="
+          padding: 0 40px 20px 40px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        ">
+          <span style="
+            font-family: 'Noto Sans KR', sans-serif;
+            font-weight: 300;
+            font-size: 10px;
+            letter-spacing: 0.12em;
+            color: #c4c0b8;
+            text-transform: uppercase;
+          ">이향인 체크리스트</span>
+          <div style="
+            width: 18px;
+            height: 18px;
+            border: 1.5px solid #c2bdb6;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          ">
+            <div style="
+              width: 7px;
+              height: 7px;
+              background: #c2bdb6;
+              border-radius: 50%;
+            "></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

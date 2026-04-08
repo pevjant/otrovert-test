@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Option 1: Dark + Glassmorphism</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Noto+Sans+KR:wght@300;400;700&family=Noto+Serif+KR:wght@900&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #2a2d35;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 32px;
+      font-family: 'Noto Sans KR', sans-serif;
+    }
+    .page-title {
+      color: #9ca3af;
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 36px;
+    }
+    .cards-wrapper {
+      display: flex;
+      gap: 32px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .card-label {
+      color: #6b7280;
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-align: center;
+      margin-top: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page-title">Option 1: Dark + Glassmorphism</div>
+
+  <div class="cards-wrapper">
+
+    <!-- PASS CARD: 이향인 -->
+    <div>
+      <div style="
+        width: 420px;
+        height: 420px;
+        position: relative;
+        overflow: hidden;
+        border-radius: 24px;
+        background: linear-gradient(145deg, #1a1b2e 0%, #0f1419 50%, #1a1b2e 100%);
+        border: 1px solid rgba(255, 191, 74, 0.18);
+        box-shadow:
+          0 0 0 1px rgba(255, 191, 74, 0.08),
+          0 32px 64px rgba(0, 0, 0, 0.6),
+          0 8px 24px rgba(0, 0, 0, 0.4),
+          inset 0 1px 0 rgba(255, 255, 255, 0.06);
+        font-family: 'Noto Sans KR', sans-serif;
+      ">
+
+        <!-- Background noise texture (SVG pattern) -->
+        <div style="
+          position: absolute;
+          inset: 0;
+          background-image: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22%3E%3Cfilter id=%22noise%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.85%22 numOctaves=%224%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22300%22 height=%22300%22 filter=%22url(%23noise)%22 opacity=%220.03%22/%3E%3C/svg%3E');
+          pointer-events: none;
+          z-index: 0;
+        "></div>
+
+        <!-- Radial glow top-right amber -->
+        <div style="
+          position: absolute;
+          top: -60px;
+          right: -60px;
+          width: 280px;
+          height: 280px;
+          background: radial-gradient(circle, rgba(255, 191, 74, 0.12) 0%, transparent 70%);
+          pointer-events: none;
+          z-index: 0;
+        "></div>
+
+        <!-- Radial glow bottom-left -->
+        <div style="
+          position: absolute;
+          bottom: -80px;
+          left: -40px;
+          width: 240px;
+          height: 240px;
+          background: radial-gradient(circle, rgba(139, 92, 246, 0.08) 0%, transparent 70%);
+          pointer-events: none;
+          z-index: 0;
+        "></div>
+
+        <!-- Glass inner surface overlay -->
+        <div style="
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, transparent 50%, rgba(255, 191, 74, 0.02) 100%);
+          border-radius: 24px;
+          pointer-events: none;
+          z-index: 0;
+        "></div>
+
+        <!-- Content layer -->
+        <div style="
+          position: relative;
+          z-index: 1;
+          width: 100%;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          padding: 36px 32px 28px;
+        ">
+
+          <!-- Top badge -->
+          <div style="
+            position: absolute;
+            top: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 191, 74, 0.1);
+            border: 1px solid rgba(255, 191, 74, 0.25);
+            border-radius: 100px;
+            padding: 4px 14px;
+            white-space: nowrap;
+          ">
+            <div style="
+              width: 6px;
+              height: 6px;
+              border-radius: 50%;
+              background: #ffbf4a;
+              box-shadow: 0 0 6px rgba(255, 191, 74, 0.8);
+            "></div>
+            <span style="
+              font-family: 'Noto Sans KR', sans-serif;
+              font-size: 10px;
+              font-weight: 700;
+              color: #ffbf4a;
+              letter-spacing: 0.14em;
+              text-transform: uppercase;
+            ">CONFIRMED</span>
+          </div>
+
+          <!-- Emoji focal point -->
+          <div style="
+            font-size: 64px;
+            line-height: 1;
+            margin-bottom: 16px;
+            filter: drop-shadow(0 0 20px rgba(255, 191, 74, 0.4)) drop-shadow(0 0 8px rgba(255, 191, 74, 0.2));
+          ">🔮</div>
+
+          <!-- Score display -->
+          <div style="
+            font-family: 'DM Serif Display', serif;
+            font-size: 56px;
+            font-weight: 400;
+            color: #ffbf4a;
+            line-height: 1;
+            letter-spacing: -0.02em;
+            margin-bottom: 4px;
+            text-shadow: 0 0 40px rgba(255, 191, 74, 0.3);
+          ">220</div>
+
+          <!-- Score unit -->
+          <div style="
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 11px;
+            font-weight: 300;
+            color: rgba(255, 191, 74, 0.6);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+          ">점 / 300점</div>
+
+          <!-- Progress bar -->
+          <div style="
+            width: 100%;
+            max-width: 260px;
+            margin-bottom: 22px;
+          ">
+            <div style="
+              width: 100%;
+              height: 3px;
+              background: rgba(255, 255, 255, 0.07);
+              border-radius: 100px;
+              position: relative;
+              overflow: hidden;
+            ">
+              <div style="
+                position: absolute;
+                left: 0;
+                top: 0;
+                height: 100%;
+                width: 73.3%;
+                background: linear-gradient(90deg, rgba(255, 191, 74, 0.4) 0%, #ffbf4a 100%);
+                border-radius: 100px;
+                box-shadow: 0 0 8px rgba(255, 191, 74, 0.5);
+              "></div>
+              <!-- Threshold marker at ~53% (159/300) -->
+              <div style="
+                position: absolute;
+                left: 53%;
+                top: -3px;
+                width: 1px;
+                height: 9px;
+                background: rgba(255, 255, 255, 0.3);
+              "></div>
+            </div>
+            <div style="
+              display: flex;
+              justify-content: space-between;
+              margin-top: 6px;
+            ">
+              <span style="font-size: 9px; color: rgba(255,255,255,0.25); font-weight: 300;">0</span>
+              <span style="font-size: 9px; color: rgba(255,255,255,0.25); font-weight: 300;">기준 159</span>
+              <span style="font-size: 9px; color: rgba(255,255,255,0.25); font-weight: 300;">300</span>
+            </div>
+          </div>
+
+          <!-- Main title -->
+          <div style="
+            font-family: 'Noto Serif KR', serif;
+            font-size: 22px;
+            font-weight: 900;
+            color: #f5f0e8;
+            letter-spacing: -0.01em;
+            text-align: center;
+            margin-bottom: 8px;
+            line-height: 1.3;
+          ">당신은 이향인입니다</div>
+
+          <!-- Tagline -->
+          <div style="
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 12px;
+            font-weight: 300;
+            color: rgba(245, 240, 232, 0.45);
+            letter-spacing: 0.04em;
+            text-align: center;
+            line-height: 1.6;
+          ">내향인도 외향인도 아닌, 제3의 기질</div>
+
+          <!-- Divider -->
+          <div style="
+            width: 40px;
+            height: 1px;
+            background: rgba(255, 191, 74, 0.2);
+            margin: 18px 0 12px;
+          "></div>
+
+          <!-- Footer -->
+          <div style="
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 9.5px;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.2);
+            letter-spacing: 0.08em;
+            text-align: center;
+          ">이향인 체크리스트 · 라미 카민스키 박사 기반</div>
+
+        </div>
+      </div>
+      <div class="card-label">Pass — Score 220</div>
+    </div>
+
+    <!-- FAIL CARD: 이향인 아님 -->
+    <div>
+      <div style="
+        width: 420px;
+        height: 420px;
+        position: relative;
+        overflow: hidden;
+        border-radius: 24px;
+        background: linear-gradient(145deg, #141820 0%, #0f1419 50%, #141820 100%);
+        border: 1px solid rgba(148, 163, 184, 0.14);
+        box-shadow:
+          0 0 0 1px rgba(148, 163, 184, 0.06),
+          0 32px 64px rgba(0, 0, 0, 0.6),
+          0 8px 24px rgba(0, 0, 0, 0.4),
+          inset 0 1px 0 rgba(255, 255, 255, 0.04);
+        font-family: 'Noto Sans KR', sans-serif;
+      ">
+
+        <!-- Background noise texture -->
+        <div style="
+          position: absolute;
+          inset: 0;
+          background-image: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22%3E%3Cfilter id=%22noise%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.85%22 numOctaves=%224%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22300%22 height=%22300%22 filter=%22url(%23noise)%22 opacity=%220.03%22/%3E%3C/svg%3E');
+          pointer-events: none;
+          z-index: 0;
+        "></div>
+
+        <!-- Radial glow top-right cool blue -->
+        <div style="
+          position: absolute;
+          top: -60px;
+          right: -60px;
+          width: 260px;
+          height: 260px;
+          background: radial-gradient(circle, rgba(96, 165, 250, 0.08) 0%, transparent 70%);
+          pointer-events: none;
+          z-index: 0;
+        "></div>
+
+        <!-- Radial glow bottom-left slate -->
+        <div style="
+          position: absolute;
+          bottom: -80px;
+          left: -40px;
+          width: 240px;
+          height: 240px;
+          background: radial-gradient(circle, rgba(148, 163, 184, 0.06) 0%, transparent 70%);
+          pointer-events: none;
+          z-index: 0;
+        "></div>
+
+        <!-- Glass inner surface overlay -->
+        <div style="
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(135deg, rgba(255, 255, 255, 0.025) 0%, transparent 50%, rgba(96, 165, 250, 0.015) 100%);
+          border-radius: 24px;
+          pointer-events: none;
+          z-index: 0;
+        "></div>
+
+        <!-- Content layer -->
+        <div style="
+          position: relative;
+          z-index: 1;
+          width: 100%;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          padding: 36px 32px 28px;
+        ">
+
+          <!-- Top badge -->
+          <div style="
+            position: absolute;
+            top: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(148, 163, 184, 0.08);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            border-radius: 100px;
+            padding: 4px 14px;
+            white-space: nowrap;
+          ">
+            <div style="
+              width: 6px;
+              height: 6px;
+              border-radius: 50%;
+              background: #94a3b8;
+              box-shadow: 0 0 6px rgba(148, 163, 184, 0.6);
+            "></div>
+            <span style="
+              font-family: 'Noto Sans KR', sans-serif;
+              font-size: 10px;
+              font-weight: 700;
+              color: #94a3b8;
+              letter-spacing: 0.14em;
+              text-transform: uppercase;
+            ">RESULT</span>
+          </div>
+
+          <!-- Emoji focal point -->
+          <div style="
+            font-size: 64px;
+            line-height: 1;
+            margin-bottom: 16px;
+            filter: drop-shadow(0 0 16px rgba(148, 163, 184, 0.3)) drop-shadow(0 0 6px rgba(96, 165, 250, 0.15));
+          ">🪞</div>
+
+          <!-- Score display -->
+          <div style="
+            font-family: 'DM Serif Display', serif;
+            font-size: 56px;
+            font-weight: 400;
+            color: #94a3b8;
+            line-height: 1;
+            letter-spacing: -0.02em;
+            margin-bottom: 4px;
+            text-shadow: 0 0 40px rgba(148, 163, 184, 0.2);
+          ">155</div>
+
+          <!-- Score unit -->
+          <div style="
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 11px;
+            font-weight: 300;
+            color: rgba(148, 163, 184, 0.5);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+          ">점 / 300점</div>
+
+          <!-- Progress bar -->
+          <div style="
+            width: 100%;
+            max-width: 260px;
+            margin-bottom: 22px;
+          ">
+            <div style="
+              width: 100%;
+              height: 3px;
+              background: rgba(255, 255, 255, 0.07);
+              border-radius: 100px;
+              position: relative;
+              overflow: hidden;
+            ">
+              <div style="
+                position: absolute;
+                left: 0;
+                top: 0;
+                height: 100%;
+                width: 51.7%;
+                background: linear-gradient(90deg, rgba(148, 163, 184, 0.3) 0%, #94a3b8 100%);
+                border-radius: 100px;
+                box-shadow: 0 0 6px rgba(148, 163, 184, 0.4);
+              "></div>
+              <!-- Threshold marker at ~53% -->
+              <div style="
+                position: absolute;
+                left: 53%;
+                top: -3px;
+                width: 1px;
+                height: 9px;
+                background: rgba(255, 255, 255, 0.3);
+              "></div>
+            </div>
+            <div style="
+              display: flex;
+              justify-content: space-between;
+              margin-top: 6px;
+            ">
+              <span style="font-size: 9px; color: rgba(255,255,255,0.25); font-weight: 300;">0</span>
+              <span style="font-size: 9px; color: rgba(255,255,255,0.25); font-weight: 300;">기준 159</span>
+              <span style="font-size: 9px; color: rgba(255,255,255,0.25); font-weight: 300;">300</span>
+            </div>
+          </div>
+
+          <!-- Main title -->
+          <div style="
+            font-family: 'Noto Serif KR', serif;
+            font-size: 22px;
+            font-weight: 900;
+            color: #c8d3e0;
+            letter-spacing: -0.01em;
+            text-align: center;
+            margin-bottom: 8px;
+            line-height: 1.3;
+          ">이향인은 아닙니다</div>
+
+          <!-- Tagline -->
+          <div style="
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 12px;
+            font-weight: 300;
+            color: rgba(200, 211, 224, 0.4);
+            letter-spacing: 0.04em;
+            text-align: center;
+            line-height: 1.6;
+          ">내향인도 외향인도 아닌, 제3의 기질</div>
+
+          <!-- Divider -->
+          <div style="
+            width: 40px;
+            height: 1px;
+            background: rgba(148, 163, 184, 0.15);
+            margin: 18px 0 12px;
+          "></div>
+
+          <!-- Footer -->
+          <div style="
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 9.5px;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.18);
+            letter-spacing: 0.08em;
+            text-align: center;
+          ">이향인 체크리스트 · 라미 카민스키 박사 기반</div>
+
+        </div>
+      </div>
+      <div class="card-label">Fail — Score 155</div>
+    </div>
+
+  </div>
+
+</body>
+</html>

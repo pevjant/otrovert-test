@@ -21,7 +21,7 @@
   --green:#3a6b5a;
   --green-soft:#d6e8e0;
   --rule:#d5d0c8;
-  --radius:6px;
+  --radius:12px;
 }
 html{font-size:16px}
 body{
@@ -36,11 +36,12 @@ body::before{
 }
 .container{position:relative;z-index:1;max-width:640px;margin:0 auto;padding:0 24px}
 
+
 /* ── Landing ── */
 .landing{
   min-height:100vh;min-height:100dvh;
-  display:flex;flex-direction:column;justify-content:center;
-  padding:60px 0;animation:appear .6s ease-out;
+  display:flex;flex-direction:column;justify-content:flex-start;
+  padding:240px 0 60px;animation:appear .6s ease-out;
 }
 @keyframes appear{from{opacity:0}to{opacity:1}}
 .landing .kicker{
@@ -54,20 +55,26 @@ body::before{
 }
 .landing h1 em{font-family:'DM Serif Display',serif;font-style:italic;color:var(--accent)}
 .landing .desc{
-  font-size:1rem;line-height:1.75;color:var(--ink2);max-width:420px;margin-bottom:40px;
+  font-size:1rem;line-height:1.75;color:var(--ink2);max-width:420px;margin-bottom:24px;
+  position:relative;padding-left:16px;
+}
+.landing .desc-quote{
+  font-family:'DM Serif Display',serif;font-size:1.5rem;
+  color:var(--ink4);line-height:1;
+  position:absolute;left:0;top:2px;
 }
 .landing .desc strong{color:var(--ink);font-weight:700}
 .btn-start{
   display:inline-flex;align-items:center;gap:8px;
-  padding:16px 36px;border:2px solid var(--ink);border-radius:0;
+  min-height:50px;padding:14px 32px;border:1.5px solid var(--ink);border-radius:var(--radius);
   background:var(--ink);color:var(--bg);
   font-size:1rem;font-weight:700;font-family:inherit;
   cursor:pointer;transition:all .2s;letter-spacing:1px;align-self:flex-start;
 }
 .btn-start:hover{background:transparent;color:var(--ink)}
 .landing .meta{
-  margin-top:20px;font-size:.8rem;color:var(--ink4);
-  border-top:1px solid var(--rule);padding-top:16px;max-width:300px;
+  margin-top:24px;font-size:.8rem;color:var(--ink4);
+  border-top:1px solid var(--rule);padding-top:14px;max-width:300px;
 }
 
 /* ── Quiz ── */
@@ -85,35 +92,29 @@ body::before{
 .progress-bar{height:2px;background:var(--rule)}
 .progress-fill{height:100%;background:var(--accent);transition:width .5s ease}
 
-.q-group{animation:slideUp .35s ease-out}
-@keyframes slideUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-.q-group-header{
-  font-family:'Noto Serif KR',serif;font-size:.8rem;
-  color:var(--ink4);letter-spacing:2px;padding:28px 0 20px;
-  border-bottom:1px solid var(--rule);margin-bottom:0;
-}
+.q-group-header{display:none}
 
 .q-card{padding:28px 0;border-bottom:1px solid var(--rule)}
 .q-card:last-child{border-bottom:none}
-.q-card.missed{background:var(--accent-soft);margin:0 -24px;padding:28px 24px;border-radius:var(--radius)}
+.q-card.missed .q-text{color:var(--accent)}
 .q-card.missed .q-number{color:var(--accent)}
 @keyframes nudge{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
 .q-card.shake{animation:nudge .3s ease}
-.q-head{display:flex;align-items:flex-start;gap:14px;margin-bottom:20px}
+.q-head{display:flex;align-items:flex-start;gap:6px;margin-bottom:20px}
 .q-number{
   font-family:'DM Serif Display',serif;font-size:1.3rem;
-  color:var(--ink4);min-width:32px;line-height:1.6;transition:color .3s;
+  color:var(--ink4);min-width:24px;line-height:1.6;transition:color .3s;
 }
 .q-card.answered .q-number{color:var(--accent)}
-.q-text{font-size:1.05rem;line-height:1.8;color:var(--ink);font-weight:400}
+.q-text{font-size:1.06rem;line-height:1.75;color:var(--ink);font-weight:400;word-break:keep-all;overflow-wrap:break-word}
 
 .scale{display:flex;gap:8px;padding-left:46px}
 .scale-btn{
-  flex:1;padding:14px 4px 12px;
+  flex:1;min-height:44px;padding:12px 4px 10px;
   border:1.5px solid var(--rule);border-radius:var(--radius);
   background:var(--surface);text-align:center;cursor:pointer;
   transition:all .2s;font-family:inherit;
-  display:flex;flex-direction:column;align-items:center;gap:4px;
+  display:flex;flex-direction:column;align-items:center;gap:3px;
 }
 .scale-btn .score-num{font-family:'DM Serif Display',serif;font-size:1.2rem;color:var(--ink2)}
 .scale-btn .score-label{font-size:.65rem;color:var(--ink3);line-height:1.3;word-break:keep-all}
@@ -129,72 +130,146 @@ body::before{
 }
 .nav-inner{max-width:640px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}
 .btn-nav{
-  padding:12px 28px;border:1.5px solid var(--rule);border-radius:var(--radius);
+  min-height:44px;padding:12px 24px;border:1.5px solid var(--rule);border-radius:var(--radius);
   background:var(--surface);color:var(--ink2);
-  font-size:.85rem;font-weight:600;font-family:inherit;cursor:pointer;transition:all .2s;
+  font-size:.9rem;font-weight:600;font-family:inherit;cursor:pointer;transition:all .2s;
 }
 .btn-nav:hover{border-color:var(--ink);color:var(--ink)}
 .btn-nav:disabled{opacity:.25;cursor:not-allowed}
 .btn-nav.primary{border-color:var(--ink);background:var(--ink);color:var(--bg)}
 .btn-nav.primary:hover{background:var(--ink2)}
 .btn-nav.primary:disabled{opacity:.25}
-.nav-dots{display:flex;gap:8px}
+.nav-dots{display:flex;gap:6px;align-items:center}
+.nav-dot-wrap{position:relative;display:flex;align-items:center}
 .nav-dot{
   width:6px;height:6px;border-radius:50%;
   background:var(--rule);transition:all .3s;cursor:pointer;
 }
 .nav-dot.active{background:var(--accent);transform:scale(1.4)}
 .nav-dot.done{background:var(--green)}
+.nav-dot.incomplete{background:var(--accent);opacity:0.4}
+.nav-dot-mark{
+  position:absolute;bottom:-10px;left:50%;transform:translateX(-50%);
+  font-size:7px;color:var(--accent);line-height:1;
+  opacity:0;transition:opacity .3s;
+}
+.nav-dot-mark.visible{opacity:1}
+.nav-dot-mark.visible::after{content:'^'}
 
-/* ── Result ── */
-.result{display:none;padding:60px 0 80px}
-.result.active{display:block;animation:appear .5s ease-out}
-.result-header{text-align:center;padding-bottom:40px;border-bottom:1px solid var(--rule);margin-bottom:40px}
-#result-capture{background:var(--bg);padding:8px 0}
-.result-kicker{font-size:.7rem;font-weight:700;letter-spacing:4px;color:var(--accent);margin-bottom:16px}
-.result-type{font-family:'Noto Serif KR',serif;font-weight:900;font-size:clamp(1.8rem,5vw,2.6rem);margin-bottom:8px}
-.result-emoji{font-size:3rem;margin-bottom:16px}
-.result-score-wrap{display:flex;align-items:baseline;justify-content:center;gap:4px;margin-top:16px}
-.result-score-num{font-family:'DM Serif Display',serif;font-size:3.5rem;color:var(--accent)}
-.result-score-max{font-size:1rem;color:var(--ink4)}
-.result-meter{max-width:400px;margin:0 auto;padding:0 20px}
-.meter-track{
-  height:24px;border-radius:12px;margin:16px 0 10px;
-  background:var(--bg2);border:1px solid var(--rule);
-  position:relative;overflow:visible;
-}
-.meter-fill{
-  height:100%;border-radius:12px;
-  transition:width 1.4s cubic-bezier(.22,1,.36,1);
-  position:relative;
-}
-.meter-fill.pass{background:linear-gradient(90deg,var(--green-soft),var(--green))}
-.meter-fill.fail{background:linear-gradient(90deg,var(--accent-soft),var(--rule))}
-.meter-score-tag{
-  position:absolute;right:-2px;top:-32px;
-  background:var(--ink);color:var(--bg);
-  padding:4px 10px;border-radius:4px;
-  font-family:'DM Serif Display',serif;font-size:.85rem;font-weight:700;
+/* ── Circles (shared across pages) ── */
+.circles-wrap{position:fixed;top:-60px;pointer-events:none;width:320px;height:320px;overflow:visible;z-index:0;left:calc(100vw - 260px)}
+.circles-wrap div.circ{position:absolute;border-radius:50%;border:1px solid rgba(196,85,58,0.06)}
+.circles-wrap .c1{width:320px;height:320px;top:0;right:0}
+.circles-wrap .c2{width:260px;height:260px;top:30px;right:30px}
+.circles-wrap .c3{width:200px;height:200px;top:60px;right:60px}
+.circles-wrap .c4{width:140px;height:140px;top:90px;right:90px}
+.circles-wrap.fail div.circ{border-color:rgba(181,176,168,0.08)}
+/* Letters on circles */
+.circle-letter{
+  position:absolute;
+  font-family:'DM Serif Display',serif;
+  font-style:italic;
+  pointer-events:none;
+  transition:opacity 0.4s ease, transform 0.4s ease, color 0.4s ease;
   white-space:nowrap;
 }
-.meter-score-tag::after{
-  content:'';position:absolute;bottom:-4px;right:8px;
-  width:8px;height:8px;background:var(--ink);
-  transform:rotate(45deg);
+.circle-letter .letter-main{font-weight:400}
+.circle-letter .letter-q{font-size:0.7em;margin-left:1px}
+/* Letter positions — large, I O E left to right across circles */
+.circle-letter.letter-i{top:130px;left:50px;font-size:48px;color:rgba(196,85,58,0.12);--rot:rotate(-15deg);transform:var(--rot);transform-origin:center center}
+.circle-letter.letter-o{top:190px;left:120px;font-size:56px;color:rgba(196,85,58,0.12);--rot:rotate(5deg);transform:var(--rot);transform-origin:center center}
+.circle-letter.letter-e{top:120px;left:210px;font-size:44px;color:rgba(196,85,58,0.12);--rot:rotate(12deg);transform:var(--rot);transform-origin:center center}
+/* Bounce animation — 2 jumps, second smaller */
+@keyframes letterBounce{
+  0%{transform:var(--rot) translateY(0)}
+  18%{transform:var(--rot) translateY(-12px)}
+  36%{transform:var(--rot) translateY(0)}
+  52%{transform:var(--rot) translateY(-5px)}
+  68%{transform:var(--rot) translateY(0)}
+  100%{transform:var(--rot) translateY(0)}
 }
+.circle-letter.bounce{animation:letterBounce 0.45s ease-out forwards}
+
+/* ── Result ── */
+.result{display:none;padding:40px 0 80px}
+.result.active{display:block;animation:appear .5s ease-out}
+.result-wrap{position:relative;overflow:hidden;}
+/* Kicker */
+.result-kicker-row{display:flex;align-items:center;gap:10px;margin-bottom:28px}
+.result-emoji{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:40px;height:40px;border-radius:50%;font-size:20px;line-height:1;
+}
+.result-emoji.pass{background:radial-gradient(circle,rgba(232,168,124,0.15) 0%,rgba(196,85,58,0.06) 70%,transparent 100%)}
+.result-emoji.fail{background:radial-gradient(circle,rgba(181,176,168,0.12) 0%,rgba(181,176,168,0.04) 70%,transparent 100%)}
+.result-kicker{font-size:.65rem;font-weight:400;letter-spacing:0.15em;color:var(--accent)}
+/* Score hero */
+.result-score-num{
+  font-family:'DM Serif Display',serif;
+  font-size:clamp(4.5rem,15vw,5.5rem);
+  font-weight:400;line-height:0.85;
+  color:var(--accent);letter-spacing:-3px;display:block;
+}
+.result-score-sub{
+  margin-top:10px;margin-bottom:28px;display:flex;align-items:baseline;gap:4px;
+}
+.result-score-line{width:32px;height:2px;background:var(--accent);opacity:0.35;margin-right:8px;align-self:center}
+.result-score-max{font-weight:300;font-size:.8rem;color:var(--ink4);letter-spacing:0.05em}
+/* Meter — thin bar style */
+.result-meter{max-width:400px;margin:0 0 28px;padding:0}
+.meter-track{
+  position:relative;height:3px;background:var(--bg2);
+  border-radius:2px;border:none;margin:0;overflow:visible;
+}
+.meter-fill{
+  position:absolute;left:0;top:0;height:100%;border-radius:2px;
+  transition:width 1.4s cubic-bezier(.22,1,.36,1);
+}
+.meter-fill.pass{background:linear-gradient(90deg,#d4956e,var(--accent))}
+.meter-fill.fail{background:linear-gradient(90deg,var(--rule),var(--ink4))}
 .meter-threshold{
-  position:absolute;left:61.67%;top:-6px;bottom:-6px;
-  width:2px;background:var(--accent);z-index:2;
+  position:absolute;left:61.67%;top:-5px;
+  width:1px;height:13px;background:var(--ink4);z-index:2;
 }
 .meter-threshold-label{
-  position:absolute;left:61.67%;bottom:-22px;
+  position:absolute;left:61.67%;top:10px;
   transform:translateX(-50%);
-  font-size:.7rem;color:var(--accent);font-weight:700;white-space:nowrap;
+  font-size:.6rem;color:var(--ink4);font-weight:300;letter-spacing:0.05em;white-space:nowrap;
 }
-.meter-labels{display:flex;justify-content:space-between;font-size:.7rem;color:var(--ink4);margin-top:20px}
-.result-body{max-width:480px;margin:32px auto 0;text-align:center}
-.result-desc{font-size:1rem;line-height:2;color:var(--ink2)}
-.result-desc strong{color:var(--ink);font-weight:700}
+.meter-dot{
+  position:absolute;top:50%;transform:translate(-50%,-50%);
+  width:8px;height:8px;border-radius:50%;box-shadow:0 0 0 2px var(--bg);
+}
+.meter-dot.pass{background:var(--accent)}
+.meter-dot.fail{background:var(--ink4)}
+/* Title — split style */
+.result-title-pre{
+  font-family:'Noto Sans KR',sans-serif;font-weight:300;
+  font-size:.85rem;color:var(--ink3);letter-spacing:0.02em;display:block;margin-bottom:2px;
+}
+.result-type{
+  font-family:'Noto Serif KR',serif;font-weight:900;
+  font-size:clamp(1.5rem,5vw,1.7rem);line-height:1.3;letter-spacing:-0.03em;
+}
+.result-divider{
+  height:1px;max-width:280px;margin:16px 0;
+  background:linear-gradient(90deg,var(--rule),transparent);
+}
+/* Description — dynamic typography */
+.result-body{max-width:480px;margin:0;position:relative;padding-left:16px}
+.result-quote{
+  font-family:'DM Serif Display',serif;font-size:1.5rem;
+  color:var(--ink4);line-height:1;
+  position:absolute;left:0;top:2px;
+}
+.result-desc-lead{font-weight:600;font-size:.95rem;line-height:1.6;color:var(--ink);margin:0 0 12px 0;letter-spacing:-0.01em}
+.result-desc-body{font-weight:400;font-size:.82rem;line-height:1.85;color:var(--ink2);margin:0 0 10px 0;letter-spacing:0.01em}
+.result-desc-detail{font-weight:300;font-size:.78rem;line-height:1.75;color:var(--ink3);margin:0 0 12px 0;letter-spacing:0.02em}
+.result-desc-accent{
+  font-family:'Noto Serif KR',serif;font-weight:900;
+  font-size:.82rem;line-height:1.5;color:var(--accent);margin:0 0 12px 0;letter-spacing:-0.01em;
+}
+.result-desc-close{font-weight:400;font-size:.78rem;line-height:1.65;color:var(--ink3);margin:0;letter-spacing:0.01em}
 
 
 
@@ -209,13 +284,14 @@ body::before{
   position:fixed;left:-9999px;top:0;
   font-family:'Noto Sans KR',sans-serif;
   -webkit-font-smoothing:antialiased;
+  z-index:-1;
 }
 
 .btn-retry{
-  display:block;margin:40px auto 0;
-  padding:14px 32px;border:1.5px solid var(--rule);border-radius:var(--radius);
+  display:block;margin:32px auto 0;
+  min-height:48px;padding:14px 32px;border:1.5px solid var(--rule);border-radius:var(--radius);
   background:transparent;color:var(--ink2);
-  font-size:.85rem;font-weight:600;font-family:inherit;cursor:pointer;transition:all .2s;
+  font-size:.9rem;font-weight:600;font-family:inherit;cursor:pointer;transition:all .2s;
 }
 .btn-retry:hover{border-color:var(--ink);color:var(--ink)}
 
@@ -224,16 +300,16 @@ body::before{
   margin-top:32px;padding-top:28px;border-top:1px solid var(--rule);
 }
 .btn-share{
-  display:inline-flex;align-items:center;gap:8px;
-  padding:12px 24px;border:1.5px solid var(--rule);border-radius:var(--radius);
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  min-height:48px;padding:12px 24px;border:1.5px solid var(--rule);border-radius:var(--radius);
   background:var(--surface);color:var(--ink2);
-  font-size:.85rem;font-weight:600;font-family:inherit;cursor:pointer;transition:all .2s;
+  font-size:.9rem;font-weight:600;font-family:inherit;cursor:pointer;transition:all .2s;
 }
 .btn-share:hover{border-color:var(--ink);color:var(--ink)}
 .btn-share svg{flex-shrink:0}
 .share-toast{
   position:fixed;bottom:80px;left:50%;transform:translateX(-50%);
-  background:var(--ink);color:var(--bg);padding:12px 24px;border-radius:var(--radius);
+  background:var(--ink);color:var(--bg);padding:14px 24px;border-radius:var(--radius);min-height:44px;
   font-size:.85rem;font-weight:500;z-index:100;
   animation:toastIn .3s ease-out;
 }
@@ -244,36 +320,87 @@ body::before{
   .container{padding:0 20px}
   .q-text{font-size:1.05rem}
   .scale{padding-left:0;gap:6px;flex-wrap:wrap}
-  .scale-btn{min-width:calc(25% - 6px);padding:12px 4px 10px}
-  .scale-btn .score-num{font-size:1.15rem}
-  .scale-btn .score-label{font-size:.62rem}
+  .scale-btn{min-width:calc(25% - 6px);min-height:44px;padding:10px 4px 8px}
+  .scale-btn .score-num{font-size:1.1rem}
+  .scale-btn .score-label{font-size:.6rem}
   .q-head{gap:10px}
   .q-card{padding:22px 0}
   
   .nav-bar{padding:10px 20px}
   .progress-wrap{margin:0 -20px;padding:14px 20px 12px}
-  .result-score-num{font-size:2.8rem}
+  .result-score-num{font-size:4rem}
   .share-actions{flex-direction:column;gap:8px}
   .btn-share{justify-content:center}
 }
 @media(max-width:380px){
   .scale-btn{min-width:calc(33.3% - 6px)}
 }
+/* Compact quiz for iPhone 14 Pro height and smaller — fit 5 questions without scroll */
+@media(max-height:860px){
+  .quiz{padding:8px 0 72px}
+  .q-group-header{padding:10px 0 8px;margin-bottom:0;font-size:.7rem}
+  .q-card{padding:10px 0}
+  .q-head{margin-bottom:8px;gap:6px}
+  .q-text{font-size:.88rem;line-height:1.55}
+  .q-number{font-size:1rem;min-width:28px}
+  .scale{gap:4px;padding-left:0;flex-wrap:wrap}
+  .scale-btn{min-height:36px;min-width:calc(25% - 4px);padding:8px 2px 6px;gap:2px}
+  .scale-btn .score-num{font-size:.95rem}
+  .scale-btn .score-label{font-size:.5rem}
+  .progress-wrap{padding:8px 20px 6px}
+  .progress-top{margin-bottom:6px}
+  .nav-bar{padding:6px 20px}
+  .btn-nav{min-height:40px;padding:10px 20px;font-size:.85rem}
+}
+/* ── Dark mode ── */
+html.dark-mode{
+  --bg:#141518;--bg2:#1e1f22;--surface:#1e1f22;
+  --ink:#e8e5e0;--ink2:#9a9590;--ink3:#7a7570;--ink4:#5a5550;
+  --accent:#e8a87c;--accent-soft:rgba(232,168,124,0.12);
+  --green:#6ab89a;--green-soft:rgba(106,184,154,0.15);
+  --rule:#2a2b2e;--radius:6px;
+}
+html.dark-mode body{background:var(--bg);color:var(--ink)}
+html.dark-mode body::before{opacity:0.01}
+html.dark-mode .circles-wrap div.circ{border-color:rgba(232,168,124,0.06)}
+html.dark-mode .circles-wrap.fail div.circ{border-color:rgba(122,117,112,0.08)}
+html.dark-mode .circle-letter{color:rgba(232,168,124,0.15)}
+html.dark-mode .result-desc-accent{color:var(--accent)}
+html.dark-mode .result-desc-close{color:var(--ink3)}
+html.dark-mode .result-quote{color:#2a2b2e}
+html.dark-mode .meter-dot{box-shadow:0 0 0 2px var(--bg)}
 </style>
 </head>
 <body>
+<!-- Shared circles — fixed to viewport -->
+<div class="circles-wrap" id="global-circles" style="position:fixed;z-index:0;">
+  <div class="circ c1"></div><div class="circ c2"></div><div class="circ c3"></div><div class="circ c4"></div>
+  <span class="circle-letter letter-i" id="gl-i"><span class="letter-main">I</span><span class="letter-q">?</span></span>
+  <span class="circle-letter letter-e" id="gl-e"><span class="letter-main">E</span><span class="letter-q">?</span></span>
+  <span class="circle-letter letter-o" id="gl-o"><span class="letter-main">O</span><span class="letter-q">?</span></span>
+</div>
 <div class="container">
-  <div class="landing" id="landing">
+  <div class="landing" id="landing" style="position:relative;">
     <div class="kicker">이향인 체크리스트</div>
     <h1>당신은<br>어떤 사람인가요<em>?</em></h1>
     <p class="desc">
-      내향인이라 하기엔 사교적이고,<br>
-      외향인이라 하기엔 혼자가 편한.<br>
+      <span class="desc-quote">"</span>
+      <span style="font-weight:400">내향인</span><em style="font-family:'DM Serif Display',serif;font-style:italic;font-size:.8rem;color:var(--ink3);margin-left:1px;"><span style="font-size:.9rem;color:var(--ink2);">I</span>ntrovert</em>이라 하기엔 사교적이고,<br>
+      <span style="font-weight:400">외향인</span><em style="font-family:'DM Serif Display',serif;font-style:italic;font-size:.8rem;color:var(--ink3);margin-left:1px;"><span style="font-size:.9rem;color:var(--ink2);">E</span>xtrovert</em>이라 하기엔 혼자가 편한.<br>
       어쩌면 우리에게는<br>
-      <strong>새로운 이름</strong>이 필요한 건 아닐까요?
+      <strong>새로운 이름</strong><em style="font-family:'DM Serif Display',serif;font-style:italic;font-size:.9rem;color:var(--ink3);margin-left:1px;"><span style="font-size:1rem;color:var(--ink2);">O</span>trovert</em>이 필요한 건 아닐까요?
     </p>
     <button class="btn-start" onclick="startQuiz()">테스트 시작</button>
     <p class="meta">40문항 · 약 5–7분 소요<br>라미 카민스키 박사의 이향인 체크리스트 기반</p>
+    <!-- Debug panel -->
+    <div id="debug-panel" style="margin-top:32px;padding:16px;border:1px dashed var(--rule);border-radius:var(--radius);background:var(--surface);">
+      <div style="font-size:.7rem;font-weight:700;color:var(--ink3);letter-spacing:2px;margin-bottom:12px;">DEBUG</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <button onclick="debugResult(true)" style="padding:8px 16px;border:1px solid var(--accent);border-radius:var(--radius);background:transparent;color:var(--accent);font-size:.8rem;font-weight:600;cursor:pointer;font-family:inherit;">🔮 이향인 O</button>
+        <button onclick="debugResult(false)" style="padding:8px 16px;border:1px solid var(--ink4);border-radius:var(--radius);background:transparent;color:var(--ink2);font-size:.8rem;font-weight:600;cursor:pointer;font-family:inherit;">🪞 이향인 X</button>
+        <button onclick="document.documentElement.classList.toggle('dark-mode')" style="padding:8px 16px;border:1px solid var(--ink4);border-radius:var(--radius);background:transparent;color:var(--ink2);font-size:.8rem;font-weight:600;cursor:pointer;font-family:inherit;">🌗 다크/라이트</button>
+      </div>
+    </div>
   </div>
 
   <div class="quiz" id="quiz">
@@ -288,27 +415,48 @@ body::before{
   </div>
 
   <div class="result" id="result">
-    <div id="result-capture">
-    <div class="result-header">
-      <div class="result-kicker">당신의 유형</div>
-      <div class="result-emoji" id="result-emoji"></div>
-      <div class="result-type" id="result-title"></div>
-      <div class="result-score-wrap">
-        <span class="result-score-num" id="result-num"></span>
-        <span class="result-score-max">/ 280</span>
+    <div class="result-wrap">
+      <!-- Kicker row -->
+      <div class="result-kicker-row">
+        <span class="result-emoji" id="result-emoji"></span>
+        <span class="result-kicker">이향인 체크리스트</span>
       </div>
+
+      <!-- Score hero -->
+      <span class="result-score-num" id="result-num"></span>
+      <div class="result-score-sub">
+        <div class="result-score-line" id="result-score-line"></div>
+        <span class="result-score-max">/ 280점</span>
+      </div>
+
+      <!-- Meter bar -->
       <div class="result-meter">
         <div class="meter-track">
-          <div class="meter-fill" id="meter-fill" style="width:0%">
-            <span class="meter-score-tag" id="meter-tag"></span>
-          </div>
+          <div class="meter-fill" id="meter-fill" style="width:0%"></div>
           <div class="meter-threshold"></div>
-          <div class="meter-threshold-label">188</div>
+          <div class="meter-threshold-label" id="meter-threshold-label">188</div>
+          <div class="meter-dot" id="meter-dot"></div>
         </div>
-        <div class="meter-labels"><span>40</span><span>280</span></div>
       </div>
-    </div>
-    <div class="result-body"><p class="result-desc" id="result-desc"></p></div>
+
+      <!-- Title — split -->
+      <span class="result-title-pre">당신은</span>
+      <span class="result-type" id="result-title"></span>
+
+      <!-- Divider -->
+      <div class="result-divider"></div>
+
+      <!-- Description — dynamic typography -->
+      <div class="result-body">
+        <span class="result-quote">"</span>
+        <p class="result-desc-lead" id="result-desc-lead"></p>
+        <p class="result-desc-body" id="result-desc-body"></p>
+        <p class="result-desc-detail" id="result-desc-detail"></p>
+        <p class="result-desc-accent" id="result-desc-accent"></p>
+        <p class="result-desc-close" id="result-desc-close"></p>
+      </div>
+      <!-- hidden for shareText() -->
+      <p id="result-desc" style="display:none"></p>
     </div>
 
     <div class="share-actions">
@@ -328,122 +476,60 @@ body::before{
 
 <!-- ── Share Card (offscreen) ── -->
 <div id="share-card">
-  <div id="share-card-inner" style="
-    width:420px;
-    background:#f6f3ee;
-    position:relative;
-    font-family:'Noto Sans KR',sans-serif;
-    -webkit-font-smoothing:antialiased;
-  ">
-    <!-- Top accent gradient bar -->
-    <div style="height:4px;background:linear-gradient(90deg,#c4553a 0%,#d4755f 50%,#c4553a 100%);"></div>
-
-    <!-- Header area -->
-    <div style="
-      background:linear-gradient(175deg,#ede9e1 0%,#f0ece5 60%,#f6f3ee 100%);
-      padding:32px 36px 24px;
-      text-align:center;
-    ">
-      <!-- Kicker with decorative lines -->
-      <div style="
-        display:flex;align-items:center;justify-content:center;gap:10px;
-        margin-bottom:22px;
-      ">
-        <div style="flex:1;height:1px;background:linear-gradient(90deg,transparent,#c4553a);max-width:48px;"></div>
-        <span style="
-          font-size:9px;font-weight:700;letter-spacing:4px;
-          color:#c4553a;text-transform:uppercase;
-          font-family:'Noto Sans KR',sans-serif;
-        ">당신의 유형</span>
-        <div style="flex:1;height:1px;background:linear-gradient(90deg,#c4553a,transparent);max-width:48px;"></div>
+  <div id="share-card-inner" style="width:420px;position:relative;font-family:'Noto Sans KR',sans-serif;-webkit-font-smoothing:antialiased;overflow:hidden;border-radius:16px;">
+    <!-- Concentric circle decoration -->
+    <div id="sc-circle1" style="position:absolute;top:-60px;right:-60px;width:320px;height:320px;border-radius:50%;border:1px solid rgba(196,85,58,0.07);pointer-events:none;"></div>
+    <div id="sc-circle2" style="position:absolute;top:-30px;right:-30px;width:260px;height:260px;border-radius:50%;border:1px solid rgba(196,85,58,0.06);pointer-events:none;"></div>
+    <div id="sc-circle3" style="position:absolute;top:0px;right:0px;width:200px;height:200px;border-radius:50%;border:1px solid rgba(196,85,58,0.05);pointer-events:none;"></div>
+    <div id="sc-circle4" style="position:absolute;top:30px;right:30px;width:140px;height:140px;border-radius:50%;border:1px solid rgba(196,85,58,0.04);pointer-events:none;"></div>
+    <div id="sc-circle5" style="position:absolute;top:60px;right:60px;width:80px;height:80px;border-radius:50%;border:1px solid rgba(196,85,58,0.04);pointer-events:none;"></div>
+    <!-- Top accent bar -->
+    <div id="sc-accent-bar" style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#e8a87c,#c4553a,#a04030);"></div>
+    <!-- Card content -->
+    <div style="padding:32px 36px 28px 36px;position:relative;z-index:1;">
+      <!-- Kicker row -->
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:24px;">
+        <span id="sc-emoji" style="display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;background:radial-gradient(circle,rgba(232,168,124,0.15) 0%,rgba(196,85,58,0.06) 70%,transparent 100%);border-radius:50%;font-size:18px;line-height:1;">🔮</span>
+        <span id="sc-kicker" style="font-family:'Noto Sans KR',sans-serif;font-weight:400;font-size:10px;letter-spacing:0.15em;color:#c4553a;">이향인 체크리스트</span>
       </div>
-
-      <!-- Emoji -->
-      <div id="sc-emoji" style="
-        font-size:52px;line-height:1;margin-bottom:14px;
-        filter:drop-shadow(0 2px 8px rgba(196,85,58,0.18));
-        display:block;
-      ">🔮</div>
-
-      <!-- Title -->
-      <div id="sc-title" style="
-        font-family:'Noto Serif KR',serif;font-weight:900;
-        font-size:22px;line-height:1.45;color:#1a1a1a;
-        margin-bottom:18px;letter-spacing:-0.3px;
-      ">당신은 이향인입니다</div>
-
-      <!-- Score display -->
-      <div style="display:flex;align-items:baseline;justify-content:center;gap:4px;margin-bottom:14px;">
-        <span id="sc-score" style="
-          font-family:'DM Serif Display',serif;
-          font-size:44px;color:#c4553a;line-height:1;
-        ">280</span>
-        <span style="font-size:13px;color:#b5b0a8;font-family:'Noto Sans KR',sans-serif;">/ 280</span>
+      <!-- Score hero -->
+      <div style="margin-bottom:4px;">
+        <span id="sc-score" style="font-family:'DM Serif Display',serif;font-size:88px;font-weight:400;line-height:0.85;color:#c4553a;letter-spacing:-3px;display:block;">220</span>
       </div>
-
+      <!-- Score subtitle -->
+      <div style="margin-top:8px;margin-bottom:24px;display:flex;align-items:baseline;gap:4px;">
+        <div id="sc-score-line" style="width:32px;height:2px;background:#c4553a;opacity:0.35;margin-right:8px;align-self:center;"></div>
+        <span id="sc-score-sub" style="font-family:'Noto Sans KR',sans-serif;font-weight:300;font-size:12px;color:#b5b0a8;letter-spacing:0.05em;">/ 280점</span>
+      </div>
       <!-- Meter bar -->
-      <div style="max-width:280px;margin:0 auto 6px;">
-        <div style="
-          height:6px;border-radius:3px;
-          background:#d5d0c8;
-          position:relative;overflow:hidden;
-        ">
-          <div id="sc-meter" style="
-            height:100%;border-radius:3px;
-            background:linear-gradient(90deg,#d6e8e0,#3a6b5a);
-            width:50%;
-            position:relative;z-index:1;
-          "></div>
-        </div>
-        <!-- Threshold marker (separate element, outside overflow:hidden parent) -->
-        <div style="position:relative;height:0;">
-          <div style="
-            position:absolute;
-            left:61.67%;top:-10px;
-            width:2px;height:16px;
-            background:#c4553a;
-            border-radius:1px;
-            transform:translateX(-50%);
-          "></div>
-        </div>
-        <div style="display:flex;justify-content:space-between;font-size:9px;color:#b5b0a8;margin-top:10px;font-family:'Noto Sans KR',sans-serif;">
-          <span>40</span>
-          <span style="color:#c4553a;font-weight:700;font-size:9px;">기준 188</span>
-          <span>280</span>
+      <div style="margin-bottom:24px;">
+        <div id="sc-meter-track" style="position:relative;height:3px;background:#ece8e3;border-radius:2px;overflow:visible;">
+          <div id="sc-meter" style="position:absolute;left:0;top:0;height:100%;width:75%;background:linear-gradient(90deg,#d4956e,#c4553a);border-radius:2px;"></div>
+          <div id="sc-threshold" style="position:absolute;left:61.67%;top:-5px;width:1px;height:13px;background:#b5b0a8;"></div>
+          <div id="sc-threshold-label" style="position:absolute;left:61.67%;top:10px;transform:translateX(-50%);font-family:'Noto Sans KR',sans-serif;font-weight:300;font-size:9px;color:#b5b0a8;letter-spacing:0.05em;white-space:nowrap;">188</div>
+          <div id="sc-meter-dot" style="position:absolute;left:75%;top:50%;transform:translate(-50%,-50%);width:8px;height:8px;background:#c4553a;border-radius:50%;box-shadow:0 0 0 2px #faf8f5;"></div>
         </div>
       </div>
-    </div>
-
-    <!-- Divider -->
-    <div style="height:1px;background:#d5d0c8;margin:0 32px;"></div>
-
-    <!-- Description area -->
-    <div style="padding:22px 36px 26px;background:#f6f3ee;">
-      <!-- Opening quote mark -->
-      <div style="text-align:center;margin-bottom:8px;">
-        <span style="font-family:'DM Serif Display',serif;font-size:28px;color:#d5d0c8;line-height:1;">"</span>
+      <!-- Title -->
+      <div style="margin-bottom:14px;margin-top:6px;">
+        <span id="sc-title-pre" style="font-family:'Noto Sans KR',sans-serif;font-weight:300;font-size:13px;color:#8a8580;letter-spacing:0.02em;display:block;margin-bottom:2px;">당신은</span>
+        <span id="sc-title" style="font-family:'Noto Serif KR',serif;font-weight:900;font-size:24px;color:#2a2520;line-height:1.3;letter-spacing:-0.03em;">이향인입니다</span>
       </div>
-      <p id="sc-desc" style="
-        font-size:13px;line-height:2.1;
-        color:#4a4540;
-        text-align:center;
-        word-break:keep-all;
-        font-family:'Noto Sans KR',sans-serif;
-        margin:0;
-      "></p>
-    </div>
-
-    <!-- Footer -->
-    <div style="
-      padding:12px 28px;
-      background:#ede9e1;
-      display:flex;align-items:center;justify-content:space-between;
-      border-top:1px solid #d5d0c8;
-    ">
-      <span style="font-size:10px;color:#8a8580;letter-spacing:0.3px;font-family:'Noto Sans KR',sans-serif;">이향인 체크리스트</span>
-      <div style="display:flex;align-items:center;gap:6px;">
-        <div style="width:16px;height:1px;background:#c4553a;opacity:0.5;"></div>
-        <span style="font-size:9px;color:#b5b0a8;font-family:'Noto Sans KR',sans-serif;letter-spacing:0.5px;">라미 카민스키 박사 기반</span>
+      <!-- Divider -->
+      <div id="sc-divider" style="height:1px;background:linear-gradient(90deg,#ece8e3,transparent);margin-bottom:16px;max-width:280px;"></div>
+      <!-- Description -->
+      <div style="font-family:'Noto Sans KR',sans-serif;position:relative;padding-left:18px;">
+        <span id="sc-quote" style="font-family:'DM Serif Display',serif;font-size:15px;color:#b5b0a8;position:absolute;left:-2px;top:2px;line-height:1;">"</span>
+        <p id="sc-desc-lead" style="font-weight:600;font-size:13.5px;line-height:1.6;color:#1a1510;margin:0 0 10px 0;letter-spacing:-0.01em;"></p>
+        <p id="sc-desc-body" style="font-weight:400;font-size:11.5px;line-height:1.8;color:#5a5550;margin:0 0 8px 0;letter-spacing:0.01em;"></p>
+        <p id="sc-desc-detail" style="font-weight:300;font-size:11px;line-height:1.75;color:#7a7570;margin:0 0 10px 0;letter-spacing:0.02em;"></p>
+        <p id="sc-desc-accent" style="font-family:'Noto Serif KR',serif;font-weight:900;font-size:12px;line-height:1.5;color:#c4553a;margin:0 0 10px 0;letter-spacing:-0.01em;"></p>
+        <p id="sc-desc-close" style="font-weight:400;font-size:10.5px;line-height:1.65;color:#8a8580;margin:0;letter-spacing:0.01em;"></p>
+      </div>
+      <!-- Footer -->
+      <div id="sc-footer" style="margin-top:20px;padding-top:14px;border-top:1px solid #ece8e3;display:flex;justify-content:space-between;align-items:center;">
+        <span id="sc-footer-left" style="font-family:'Noto Sans KR',sans-serif;font-weight:300;font-size:9px;color:#b5b0a8;letter-spacing:0.06em;">라미 카민스키 박사 기반</span>
+        <span id="sc-footer-cta" style="font-family:'Noto Sans KR',sans-serif;font-weight:500;font-size:9.5px;color:#c4553a;letter-spacing:0.03em;">나도 테스트 해보기 →</span>
       </div>
     </div>
   </div>
@@ -501,7 +587,7 @@ const QS=[
   {n:40,t:"나는 종종 스스로에게 질문을 던진다.",d:"F"},
 ];
 
-const PP=5,TP=Math.ceil(QS.length/PP);
+const PP=window.innerHeight<=860?4:5,TP=Math.ceil(QS.length/PP);
 let cp=0,ans={};
 const LB=[
   {v:7,l:"매우 그렇다"},{v:6,l:"꽤 그렇다"},{v:5,l:"그렇다"},{v:4,l:"보통이다"},
@@ -517,9 +603,14 @@ function startQuiz(){
 function buildDots(){
   const c=document.getElementById('nav-dots');c.innerHTML='';
   for(let i=0;i<TP;i++){
+    const w=document.createElement('div');
+    w.className='nav-dot-wrap';
     const d=document.createElement('div');
     d.className='nav-dot'+(i===0?' active':'');
-    d.onclick=()=>{cp=i;render()};c.appendChild(d);
+    d.onclick=()=>{if(i!==cp)fadeAndGo(i);};
+    const m=document.createElement('span');
+    m.className='nav-dot-mark';
+    w.appendChild(d);w.appendChild(m);c.appendChild(w);
   }
 }
 function render(){
@@ -543,25 +634,32 @@ function render(){
 
   document.getElementById('btn-prev').disabled=cp===0;
   updNav();
-  document.querySelectorAll('.nav-dot').forEach((d,i)=>{
+  document.querySelectorAll('.nav-dot-wrap').forEach((w,i)=>{
+    const d=w.querySelector('.nav-dot');
+    const m=w.querySelector('.nav-dot-mark');
     d.className='nav-dot';
+    m.className='nav-dot-mark';
     if(i===cp)d.classList.add('active');
     else if(pageDone(i))d.classList.add('done');
+    else if(pageStarted(i)){d.classList.add('incomplete');m.classList.add('visible');}
   });
   document.getElementById('page-label').textContent=`${cp+1} / ${TP}`;
   updProg();window.scrollTo({top:0,behavior:'smooth'});
 }
 function updNav(){
   const last=cp===TP-1;
-  const curDone=pageDone(cp);
   const allDone=Object.keys(ans).length===40;
   const nb=document.getElementById('btn-next');
   nb.textContent=last?'결과 보기':'다음';
-  nb.disabled=last?!allDone:!curDone;
+  nb.disabled=last&&!allDone;
 }
 function pageDone(p){
   const s=p*PP,e=Math.min(s+PP,QS.length);
   for(let i=s;i<e;i++)if(ans[QS[i].n]===undefined)return false;return true;
+}
+function pageStarted(p){
+  const s=p*PP,e=Math.min(s+PP,QS.length);
+  for(let i=s;i<e;i++)if(ans[QS[i].n]!==undefined)return true;return false;
 }
 function pick(n,score,el){
   ans[n]=score;
@@ -578,23 +676,39 @@ function updProg(){
   document.getElementById('progress-fill').style.width=(c/40*100)+'%';
 }
 function changePage(d){
-  if(d===1&&!pageDone(cp)){
-    const s=cp*PP,e=Math.min(s+PP,QS.length);
-    let first=null;
-    for(let i=s;i<e;i++){
-      const q=QS[i],card=document.getElementById('qc-'+q.n);
-      if(ans[q.n]===undefined){
-        card.classList.add('missed','shake');
-        if(!first)first=card;
-        setTimeout(()=>card.classList.remove('shake'),400);
-      }
-    }
-    if(first)first.scrollIntoView({behavior:'smooth',block:'center'});
+  if(cp===TP-1&&d===1){
+    if(Object.keys(ans).length===40){showResult();return;}
+    for(let p=0;p<TP;p++){if(!pageDone(p)){fadeAndGo(p);return;}}
     return;
   }
-  if(cp===TP-1&&d===1){if(Object.keys(ans).length===40)showResult();return;}
-  cp=Math.max(0,Math.min(TP-1,cp+d));render();
+  const next=Math.max(0,Math.min(TP-1,cp+d));
+  if(next===cp)return;
+  fadeAndGo(next);
 }
+function fadeAndGo(target){
+  cp=target;render();
+}
+
+// Swipe gesture for page navigation (exclude nav-bar area)
+let touchStartX=0,touchStartY=0,touchValid=false;
+document.addEventListener('touchstart',e=>{
+  if(!document.getElementById('quiz').classList.contains('active'))return;
+  if(e.target.closest('.nav-bar')){touchValid=false;return;}
+  touchValid=true;
+  touchStartX=e.touches[0].clientX;
+  touchStartY=e.touches[0].clientY;
+},{passive:true});
+document.addEventListener('touchend',e=>{
+  if(!touchValid)return;
+  touchValid=false;
+  const dx=e.changedTouches[0].clientX-touchStartX;
+  const dy=e.changedTouches[0].clientY-touchStartY;
+  if(Math.abs(dx)>60&&Math.abs(dx)>Math.abs(dy)*1.5){
+    if(dx<0)changePage(1);
+    else changePage(-1);
+  }
+},{passive:true});
+
 function showResult(){
   document.getElementById('quiz').style.display='none';
   document.getElementById('nav-bar').style.display='none';
@@ -603,20 +717,65 @@ function showResult(){
   const pct=(total-40)/240*100;
   const is188=total>=188;
   const emoji=is188?'🔮':'🪞';
-  const title=is188?'당신은 이향인입니다':'이향인은 아닙니다';
-  const desc=is188
-    ?'총점 <strong>'+total+'점</strong>으로, 기준 점수 188점을 넘었습니다.<br><br>당신은 이향인일 가능성이 큽니다. 이향인은 내향인도, 외향인도 아닌 — 에너지가 안이나 밖이 아닌 <strong>자기만의 방향</strong>으로 흐르는 사람입니다. 집단 속에 있어도 진정으로 속하지 않고, 혼자일 때 가장 자연스러워지는 사람. 그것은 결핍이 아니라 <strong>다른 구조</strong>입니다.<br><br>이 결과가 당신이 지닌 특별한 면모를 더 잘 이해하고, 기꺼이 받아들이는 계기가 되길 바랍니다.'
-    :'총점 <strong>'+total+'점</strong>으로, 기준 점수 188점에 미치지 못했습니다.<br><br>당신은 이향인이 아닐 가능성이 큽니다. 당신은 집단에 소속되는 것에서 안정감을 느끼거나, 내향·외향 중 한쪽의 에너지 방향이 비교적 뚜렷한 편입니다.<br><br>이 결과가 당신의 삶 속에, 혹은 주변에 있는 이향인들을 이해하고 존중하는 데 도움이 되길 바랍니다.';
-  document.getElementById('result-emoji').textContent=emoji;
-  document.getElementById('result-title').textContent=title;
+
+  // Circles theme + letter states (shared global circles)
+  const circles=document.getElementById('global-circles');
+  circles.className='circles-wrap'+(is188?'':' fail');
+  const rlO=document.getElementById('gl-o');
+  const rlI=document.getElementById('gl-i');
+  const rlE=document.getElementById('gl-e');
+  if(is188){
+    rlO.style.color='rgba(196,85,58,0.45)';rlO.style.transform='rotate(5deg) scale(1.25)';
+    rlO.querySelector('.letter-q').style.display='none';
+    rlI.style.color='rgba(196,85,58,0.06)';rlI.style.transform='rotate(-15deg) scale(1)';
+    rlE.style.color='rgba(196,85,58,0.06)';rlE.style.transform='rotate(12deg) scale(1)';
+  }else{
+    rlI.style.color='rgba(138,133,128,0.35)';rlI.style.transform='rotate(-15deg) scale(1.15)';
+    rlE.style.color='rgba(138,133,128,0.35)';rlE.style.transform='rotate(12deg) scale(1.15)';
+    rlO.style.color='rgba(138,133,128,0.05)';rlO.style.transform='rotate(5deg) scale(1)';
+  }
+
+  // Emoji
+  const emojiEl=document.getElementById('result-emoji');
+  emojiEl.textContent=emoji;
+  emojiEl.className='result-emoji '+(is188?'pass':'fail');
+
+  // Score
   document.getElementById('result-num').textContent=total;
-  document.getElementById('result-desc').innerHTML=desc;
-  // 미터 애니메이션
+  const scoreLine=document.getElementById('result-score-line');
+  scoreLine.style.background=is188?'var(--accent)':'var(--ink4)';
+
+  // Meter
   const fill=document.getElementById('meter-fill');
-  const tag=document.getElementById('meter-tag');
   fill.className='meter-fill '+(is188?'pass':'fail');
-  tag.textContent=total+'점';
-  setTimeout(()=>{fill.style.width=pct+'%';},200);
+  const dot=document.getElementById('meter-dot');
+  dot.className='meter-dot '+(is188?'pass':'fail');
+  // Hide 188 label when score would overlap (within ±15 points)
+  document.getElementById('meter-threshold-label').style.display=Math.abs(total-188)<=15?'none':'block';
+  setTimeout(()=>{fill.style.width=pct+'%';dot.style.left=pct+'%';},200);
+
+  // Title — merged with lead sentence
+  document.getElementById('result-title').textContent=is188?'이향인일 가능성이 높습니다.':'이향인이 아닐 가능성이 높습니다.';
+
+  // Description — dynamic typography per paragraph
+  if(is188){
+    document.getElementById('result-desc-lead').textContent='';
+    document.getElementById('result-desc-body').innerHTML='이향인은 내향인도, 외향인도 아닌 —<br>에너지가 안이나 밖이 아닌<br>자기만의 방향으로 흐르는 사람입니다.';
+    document.getElementById('result-desc-detail').innerHTML='집단 속에 있어도 진정으로 속하지 않고,<br>혼자일 때 가장 자연스러워지는 사람.';
+    document.getElementById('result-desc-accent').textContent='그것은 결핍이 아니라, 다른 구조입니다.';
+    document.getElementById('result-desc-close').innerHTML='이 결과가 당신의 특별한 면모를<br>더 잘 이해하는 계기가 되길 바랍니다.';
+  }else{
+    document.getElementById('result-desc-lead').textContent='';
+    document.getElementById('result-desc-body').innerHTML='집단에 소속되는 것에서 안정감을 느끼거나,<br>내향·외향 중 한쪽의 에너지 방향이<br>비교적 뚜렷한 편입니다.';
+    document.getElementById('result-desc-detail').textContent='';
+    document.getElementById('result-desc-accent').innerHTML='이 결과가 주변의 이향인들을 이해하고<br>존중하는 데 도움이 되길 바랍니다.';
+    document.getElementById('result-desc-close').innerHTML='어쩌면 당신 곁에도 이향인이 있을지 몰라요.';
+  }
+  // Hidden desc for shareText()
+  const descText=is188
+    ?'이향인일 가능성이 높습니다. 이향인은 내향인도, 외향인도 아닌 — 에너지가 안이나 밖이 아닌 자기만의 방향으로 흐르는 사람입니다. 집단 속에 있어도 진정으로 속하지 않고, 혼자일 때 가장 자연스러워지는 사람. 그것은 결핍이 아니라 다른 구조입니다.'
+    :'이향인이 아닐 가능성이 높습니다. 집단에 소속되는 것에서 안정감을 느끼거나, 내향·외향 중 한쪽의 에너지 방향이 비교적 뚜렷한 편입니다.';
+  document.getElementById('result-desc').textContent=descText;
 
   window.scrollTo({top:0,behavior:'smooth'});
 }
@@ -630,30 +789,93 @@ function toast(msg){
 
 function populateShareCard(){
   const emoji=document.getElementById('result-emoji').textContent;
-  const title=document.getElementById('result-title').textContent;
   const score=parseInt(document.getElementById('result-num').textContent)||0;
   const is188=score>=188;
-
-  document.getElementById('sc-emoji').textContent=emoji;
-  document.getElementById('sc-title').textContent=title;
-  document.getElementById('sc-score').textContent=score;
-
   const pct=Math.max(0,Math.min(100,(score-40)/240*100));
+
+  // — Theme colors (light mode — matches result screen) —
+  const T={
+    bg:'#faf8f5',accent:is188?'#c4553a':'#8a8580',accentBar:is188?'linear-gradient(90deg,#e8a87c,#c4553a,#a04030)':'linear-gradient(90deg,#d0ccc8,#b5b0a8,#9a9590)',
+    circle:is188?'rgba(196,85,58,':'rgba(181,176,168,',halo:is188?'radial-gradient(circle,rgba(232,168,124,0.15) 0%,rgba(196,85,58,0.06) 70%,transparent 100%)':'radial-gradient(circle,rgba(181,176,168,0.12) 0%,rgba(181,176,168,0.04) 70%,transparent 100%)',
+    kicker:is188?'#c4553a':'#8a8580',scoreSub:'#b5b0a8',scoreLine:is188?'#c4553a':'#b5b0a8',
+    meterTrack:'#ece8e3',meterFill:is188?'linear-gradient(90deg,#d4956e,#c4553a)':'linear-gradient(90deg,#d0ccc8,#b5b0a8)',
+    thresholdColor:'#b5b0a8',dotBg:is188?'#c4553a':'#b5b0a8',dotShadow:'#faf8f5',
+    titlePre:is188?'#8a8580':'#b5b0a8',title:'#2a2520',quote:'#e8ddd6',
+    descLead:'#1a1510',descBody:'#5a5550',descDetail:'#7a7570',descAccent:is188?'#c4553a':'#8a8580',descClose:'#8a8580',
+    divider:'linear-gradient(90deg,#ece8e3,transparent)',footerBorder:'#ece8e3',footerLeft:'#b5b0a8',footerCta:is188?'#c4553a':'#8a8580'
+  };
+
+  // — Apply theme —
+  const card=document.getElementById('share-card-inner');
+  card.style.background=T.bg;
+
+  // Circles
+  const opacities=[0.08,0.07,0.06,0.05,0.04];
+  for(let i=1;i<=5;i++){
+    document.getElementById('sc-circle'+i).style.borderColor=T.circle+opacities[i-1]+')';
+  }
+
+  // Accent bar
+  document.getElementById('sc-accent-bar').style.background=T.accentBar;
+
+  // Emoji & kicker
+  document.getElementById('sc-emoji').textContent=emoji;
+  document.getElementById('sc-emoji').style.background=T.halo;
+  document.getElementById('sc-kicker').style.color=T.kicker;
+
+  // Score
+  document.getElementById('sc-score').textContent=score;
+  document.getElementById('sc-score').style.color=T.accent;
+  document.getElementById('sc-score-line').style.background=T.scoreLine;
+  document.getElementById('sc-score-sub').style.color=T.scoreSub;
+
+  // Meter
+  document.getElementById('sc-meter-track').style.background=T.meterTrack;
   const meter=document.getElementById('sc-meter');
   meter.style.width=pct+'%';
-  meter.style.background=is188
-    ?'linear-gradient(90deg,#d6e8e0,#3a6b5a)'
-    :'linear-gradient(90deg,#f0ddd6,#d5d0c8)';
+  meter.style.background=T.meterFill;
+  document.getElementById('sc-threshold').style.background=T.thresholdColor;
+  document.getElementById('sc-threshold-label').style.color='#b5b0a8';
+  // Hide 188 label when score dot would overlap
+  document.getElementById('sc-threshold-label').style.display=Math.abs(score-188)<=15?'none':'block';
+  const dot=document.getElementById('sc-meter-dot');
+  dot.style.left=pct+'%';
+  dot.style.background=T.dotBg;
+  dot.style.boxShadow='0 0 0 2px '+T.dotShadow;
 
-  // CRITICAL: use innerHTML to preserve <strong> bold and <br> line breaks
-  const descEl=document.getElementById('result-desc');
-  const scDesc=document.getElementById('sc-desc');
-  scDesc.innerHTML=descEl.innerHTML;
-  // Ensure strong tags inside render with correct inline styles for html2canvas
-  scDesc.querySelectorAll('strong').forEach(s=>{
-    s.style.color='#1a1a1a';
-    s.style.fontWeight='700';
-  });
+  // Title
+  document.getElementById('sc-title-pre').style.color=T.titlePre;
+  const titleEl=document.getElementById('sc-title');
+  titleEl.textContent=is188?'이향인일 가능성이 높습니다.':'이향인이 아닐 가능성이 높습니다.';
+  titleEl.style.color=T.title;
+
+  // Divider
+  document.getElementById('sc-divider').style.background=T.divider;
+
+  // Description — dynamic typography per paragraph
+  if(is188){
+    document.getElementById('sc-desc-lead').textContent='';
+    document.getElementById('sc-desc-body').innerHTML='이향인은 내향인도, 외향인도 아닌 —<br>에너지가 안이나 밖이 아닌<br>자기만의 방향으로 흐르는 사람입니다.';
+    document.getElementById('sc-desc-detail').innerHTML='집단 속에 있어도 진정으로 속하지 않고,<br>혼자일 때 가장 자연스러워지는 사람.';
+    document.getElementById('sc-desc-accent').textContent='그것은 결핍이 아니라, 다른 구조입니다.';
+    document.getElementById('sc-desc-close').innerHTML='이 결과가 당신의 특별한 면모를<br>더 잘 이해하는 계기가 되길 바랍니다.';
+  }else{
+    document.getElementById('sc-desc-lead').textContent='';
+    document.getElementById('sc-desc-body').innerHTML='집단에 소속되는 것에서 안정감을 느끼거나,<br>내향·외향 중 한쪽의 에너지 방향이<br>비교적 뚜렷한 편입니다.';
+    document.getElementById('sc-desc-detail').textContent='';
+    document.getElementById('sc-desc-accent').innerHTML='이 결과가 주변의 이향인들을 이해하고<br>존중하는 데 도움이 되길 바랍니다.';
+    document.getElementById('sc-desc-close').innerHTML='어쩌면 당신 곁에도 이향인이 있을지 몰라요.';
+  }
+  document.getElementById('sc-desc-lead').style.color=T.descLead;
+  document.getElementById('sc-desc-body').style.color=T.descBody;
+  document.getElementById('sc-desc-detail').style.color=T.descDetail;
+  document.getElementById('sc-desc-accent').style.color=T.descAccent;
+  document.getElementById('sc-desc-close').style.color=T.descClose;
+
+  // Footer
+  document.getElementById('sc-footer').style.borderTopColor=T.footerBorder;
+  document.getElementById('sc-footer-left').style.color=T.footerLeft;
+  document.getElementById('sc-footer-cta').style.color=T.footerCta;
 }
 
 async function shareImage(){
@@ -700,6 +922,32 @@ async function shareText(){
     await navigator.clipboard.writeText(text);
     toast('클립보드에 복사되었습니다');
   }catch(e){toast('공유에 실패했습니다')}
+}
+// Landing bounce — sequential with delay between: I → pause → O → pause → E
+setTimeout(()=>{
+  const letters=[document.getElementById('gl-i'),document.getElementById('gl-e'),document.getElementById('gl-o')];
+  let i=0;
+  function bounceNext(){
+    if(i>=letters.length)return;
+    const el=letters[i];
+    if(!el){i++;bounceNext();return;}
+    el.classList.add('bounce');
+    el.addEventListener('animationend',()=>{
+      el.classList.remove('bounce');
+      i++;
+      setTimeout(bounceNext,150);
+    },{once:true});
+  }
+  bounceNext();
+},800);
+
+function debugResult(pass){
+  document.getElementById('landing').style.display='none';
+  document.getElementById('quiz').style.display='none';
+  const quiz=document.getElementById('quiz');quiz.classList.remove('active');
+  // Fill answers to get target score
+  QS.forEach(q=>{ans[q.n]=pass?7:3;});
+  showResult();
 }
 document.addEventListener('keydown',e=>{
   if(!document.getElementById('quiz').classList.contains('active'))return;

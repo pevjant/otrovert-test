@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Option 3: Gradient + Geometric</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Noto+Sans+KR:wght@300;400;700&family=Noto+Serif+KR:wght@900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #e8e4e0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 48px 32px;
+    min-height: 100vh;
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+  .page-title {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 36px;
+  }
+  .cards-row {
+    display: flex;
+    gap: 32px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .card-label {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    color: #999;
+    text-align: center;
+    margin-bottom: 10px;
+    letter-spacing: 0.08em;
+  }
+</style>
+</head>
+<body>
+
+<div class="page-title">Option 3: Gradient + Geometric</div>
+
+<div class="cards-row">
+
+  <!-- PASS CARD -->
+  <div>
+    <div class="card-label">PASS · Score 220</div>
+    <div style="
+      width: 420px;
+      height: 420px;
+      border-radius: 20px;
+      background: linear-gradient(145deg, #f5c9a0 0%, #e8956d 30%, #c9614a 60%, #8b3a2e 100%);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 24px 64px rgba(139,58,46,0.28), 0 4px 16px rgba(0,0,0,0.12);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    ">
+
+      <!-- Geometric: large faint circle top-right -->
+      <div style="
+        position: absolute;
+        top: -60px;
+        right: -60px;
+        width: 260px;
+        height: 260px;
+        border-radius: 50%;
+        border: 1px solid rgba(255,255,255,0.18);
+        pointer-events: none;
+      "></div>
+      <!-- second ring -->
+      <div style="
+        position: absolute;
+        top: -30px;
+        right: -30px;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        border: 1px solid rgba(255,255,255,0.12);
+        pointer-events: none;
+      "></div>
+      <!-- third ring -->
+      <div style="
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+        border: 1px solid rgba(255,255,255,0.1);
+        pointer-events: none;
+      "></div>
+
+      <!-- Geometric: thin horizontal rule top -->
+      <div style="
+        position: absolute;
+        top: 52px;
+        left: 32px;
+        right: 32px;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+        pointer-events: none;
+      "></div>
+
+      <!-- Geometric: dot cluster bottom-left -->
+      <div style="position: absolute; bottom: 36px; left: 32px; pointer-events: none;">
+        <div style="display: flex; gap: 7px; margin-bottom: 7px;">
+          <div style="width: 3px; height: 3px; border-radius: 50%; background: rgba(255,255,255,0.35);"></div>
+          <div style="width: 3px; height: 3px; border-radius: 50%; background: rgba(255,255,255,0.25);"></div>
+          <div style="width: 3px; height: 3px; border-radius: 50%; background: rgba(255,255,255,0.18);"></div>
+          <div style="width: 3px; height: 3px; border-radius: 50%; background: rgba(255,255,255,0.12);"></div>
+        </div>
+        <div style="display: flex; gap: 7px; margin-bottom: 7px;">
+          <div style="width: 3px; height: 3px; border-radius: 50%; background: rgba(255,255,255,0.25);"></div>
+          <div style="width: 3px; height: 3px; border-radius: 50%; background: rgba(255,255,255,0.18);"></div>
+          <div style="width: 3px; height: 3px; border-radius: 50%; background: rgba(255,255,255,0.12);"></div>
+          <div style="width: 3px; height: 3px; border-radius: 50%; background: rgba(255,255,255,0.08);"></div>
+        </div>
+        <div style="display: flex; gap: 7px;">
+          <div style="width: 3px; height: 3px; border-radius: 50%; background: rgba(255,255,255,0.18);"></div>
+          <div style="width: 3px; height: 3px; border-radius: 50%; background: rgba(255,255,255,0.12);"></div>
+          <div style="width: 3px; height: 3px; border-radius: 50%; background: rgba(255,255,255,0.08);"></div>
+          <div style="width: 3px; height: 3px; border-radius: 50%; background: rgba(255,255,255,0.05);"></div>
+        </div>
+      </div>
+
+      <!-- TEST NAME top -->
+      <div style="
+        position: absolute;
+        top: 26px;
+        left: 0; right: 0;
+        text-align: center;
+        font-family: 'Noto Sans KR', sans-serif;
+        font-weight: 300;
+        font-size: 10.5px;
+        letter-spacing: 0.22em;
+        color: rgba(255,255,255,0.65);
+        text-transform: uppercase;
+      ">이향인 체크리스트</div>
+
+      <!-- Main content -->
+      <div style="
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0;
+        position: relative;
+        z-index: 1;
+      ">
+
+        <!-- Emoji badge -->
+        <div style="
+          width: 80px;
+          height: 80px;
+          border-radius: 50%;
+          background: rgba(255,255,255,0.15);
+          border: 1.5px solid rgba(255,255,255,0.4);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 36px;
+          margin-bottom: 22px;
+          backdrop-filter: blur(4px);
+          box-shadow: 0 4px 20px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.3);
+        ">🔮</div>
+
+        <!-- Score with ring decoration -->
+        <div style="position: relative; width: 130px; height: 130px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+          <!-- concentric ring 1 -->
+          <div style="
+            position: absolute;
+            top: 0; left: 0;
+            width: 130px; height: 130px;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.22);
+          "></div>
+          <!-- concentric ring 2 -->
+          <div style="
+            position: absolute;
+            top: 14px; left: 14px;
+            width: 102px; height: 102px;
+            border-radius: 50%;
+            border: 1.5px solid rgba(255,255,255,0.32);
+          "></div>
+          <!-- concentric ring 3 — slightly thicker -->
+          <div style="
+            position: absolute;
+            top: 26px; left: 26px;
+            width: 78px; height: 78px;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.2);
+          "></div>
+          <!-- Score number -->
+          <div style="
+            font-family: 'DM Serif Display', serif;
+            font-size: 54px;
+            color: #fff;
+            letter-spacing: -0.02em;
+            line-height: 1;
+            text-shadow: 0 2px 12px rgba(0,0,0,0.15);
+            position: relative;
+            z-index: 2;
+          ">220</div>
+        </div>
+
+        <!-- /300 label -->
+        <div style="
+          font-family: 'Noto Sans KR', sans-serif;
+          font-weight: 300;
+          font-size: 11px;
+          letter-spacing: 0.14em;
+          color: rgba(255,255,255,0.6);
+          margin-top: -14px;
+          margin-bottom: 22px;
+        ">/ 300점</div>
+
+        <!-- Divider line -->
+        <div style="
+          width: 40px;
+          height: 1px;
+          background: rgba(255,255,255,0.45);
+          margin-bottom: 20px;
+        "></div>
+
+        <!-- Title -->
+        <div style="
+          font-family: 'Noto Serif KR', serif;
+          font-weight: 900;
+          font-size: 22px;
+          color: #fff;
+          letter-spacing: -0.01em;
+          text-align: center;
+          text-shadow: 0 2px 16px rgba(0,0,0,0.12);
+          margin-bottom: 8px;
+        ">당신은 이향인입니다</div>
+
+        <!-- Subtitle -->
+        <div style="
+          font-family: 'Noto Sans KR', sans-serif;
+          font-weight: 300;
+          font-size: 12px;
+          color: rgba(255,255,255,0.72);
+          letter-spacing: 0.05em;
+          text-align: center;
+          line-height: 1.6;
+        ">내향과 외향의 경계를 자유롭게</div>
+
+      </div>
+
+      <!-- Footer -->
+      <div style="
+        position: absolute;
+        bottom: 20px;
+        left: 0; right: 0;
+        text-align: center;
+        font-family: 'Noto Sans KR', sans-serif;
+        font-weight: 400;
+        font-size: 10px;
+        letter-spacing: 0.18em;
+        color: rgba(255,255,255,0.45);
+        text-transform: uppercase;
+      ">otrovert.com</div>
+
+    </div>
+  </div>
+
+  <!-- FAIL CARD -->
+  <div>
+    <div class="card-label">FAIL · Score 155</div>
+    <div style="
+      width: 420px;
+      height: 420px;
+      border-radius: 20px;
+      background: linear-gradient(145deg, #e8e6e2 0%, #c8c4bf 28%, #9a9590 58%, #6b6762 100%);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 24px 64px rgba(80,76,72,0.22), 0 4px 16px rgba(0,0,0,0.10);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    ">
+
+      <!-- Geometric: large faint circle top-right -->
+      <div style="
+        position: absolute;
+        top: -60px;
+        right: -60px;
+        width: 260px;
+        height: 260px;
+        border-radius: 50%;
+        border: 1px solid rgba(255,255,255,0.22);
+        pointer-events: none;
+      "></div>
+      <div style="
+        position: absolute;
+        top: -30px;
+        right: -30px;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        border: 1px solid rgba(255,255,255,0.14);
+        pointer-events: none;
+      "></div>
+      <div style="
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+        border: 1px solid rgba(255,255,255,0.1);
+        pointer-events: none;
+      "></div>
+
+      <!-- Geometric: thin horizontal rule top -->
+      <div style="
+        position: absolute;
+        top: 52px;
+        left: 32px;
+        right: 32px;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
+        pointer-events: none;
+      "></div>
+
+      <!-- Geometric: dot cluster bottom-left -->
+      <div style="position: absolute; bottom: 36px; left: 32px; pointer-events: none;">
+        <div style="display: flex; gap: 7px; margin-bottom: 7px;">
+          <div style="width: 3px; height: 3px; border-radius: 50%; background: rgba(255,255,255,0.4);"></div>
+          <div style="width: 3px; height: 3px; border-radius: 50%; background: rgba(255,255,255,0.28);"></div>
+          <div style="width: 3px; height: 3px; border-radius: 50%; background: rgba(255,255,255,0.18);"></div>
+          <div style="width: 3px; height: 3px; border-radius: 50%; background: rgba(255,255,255,0.1);"></div>
+        </div>
+        <div style="display: flex; gap: 7px; margin-bottom: 7px;">
+          <div style="width: 3px; height: 3px; border-radius: 50%; background: rgba(255,255,255,0.28);"></div>
+          <div style="width: 3px; height: 3px; border-radius: 50%; background: rgba(255,255,255,0.18);"></div>
+          <div style="width: 3px; height: 3px; border-radius: 50%; background: rgba(255,255,255,0.1);"></div>
+          <div style="width: 3px; height: 3px; border-radius: 50%; background: rgba(255,255,255,0.06);"></div>
+        </div>
+        <div style="display: flex; gap: 7px;">
+          <div style="width: 3px; height: 3px; border-radius: 50%; background: rgba(255,255,255,0.18);"></div>
+          <div style="width: 3px; height: 3px; border-radius: 50%; background: rgba(255,255,255,0.1);"></div>
+          <div style="width: 3px; height: 3px; border-radius: 50%; background: rgba(255,255,255,0.06);"></div>
+          <div style="width: 3px; height: 3px; border-radius: 50%; background: rgba(255,255,255,0.04);"></div>
+        </div>
+      </div>
+
+      <!-- TEST NAME top -->
+      <div style="
+        position: absolute;
+        top: 26px;
+        left: 0; right: 0;
+        text-align: center;
+        font-family: 'Noto Sans KR', sans-serif;
+        font-weight: 300;
+        font-size: 10.5px;
+        letter-spacing: 0.22em;
+        color: rgba(255,255,255,0.55);
+        text-transform: uppercase;
+      ">이향인 체크리스트</div>
+
+      <!-- Main content -->
+      <div style="
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0;
+        position: relative;
+        z-index: 1;
+      ">
+
+        <!-- Emoji badge -->
+        <div style="
+          width: 80px;
+          height: 80px;
+          border-radius: 50%;
+          background: rgba(255,255,255,0.12);
+          border: 1.5px solid rgba(255,255,255,0.35);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 36px;
+          margin-bottom: 22px;
+          backdrop-filter: blur(4px);
+          box-shadow: 0 4px 20px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.25);
+        ">🪞</div>
+
+        <!-- Score with ring decoration -->
+        <div style="position: relative; width: 130px; height: 130px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+          <div style="
+            position: absolute;
+            top: 0; left: 0;
+            width: 130px; height: 130px;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.2);
+          "></div>
+          <div style="
+            position: absolute;
+            top: 14px; left: 14px;
+            width: 102px; height: 102px;
+            border-radius: 50%;
+            border: 1.5px solid rgba(255,255,255,0.28);
+          "></div>
+          <div style="
+            position: absolute;
+            top: 26px; left: 26px;
+            width: 78px; height: 78px;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.18);
+          "></div>
+          <div style="
+            font-family: 'DM Serif Display', serif;
+            font-size: 54px;
+            color: #fff;
+            letter-spacing: -0.02em;
+            line-height: 1;
+            text-shadow: 0 2px 12px rgba(0,0,0,0.12);
+            position: relative;
+            z-index: 2;
+          ">155</div>
+        </div>
+
+        <!-- /300 label -->
+        <div style="
+          font-family: 'Noto Sans KR', sans-serif;
+          font-weight: 300;
+          font-size: 11px;
+          letter-spacing: 0.14em;
+          color: rgba(255,255,255,0.52);
+          margin-top: -14px;
+          margin-bottom: 22px;
+        ">/ 300점</div>
+
+        <!-- Divider line -->
+        <div style="
+          width: 40px;
+          height: 1px;
+          background: rgba(255,255,255,0.4);
+          margin-bottom: 20px;
+        "></div>
+
+        <!-- Title -->
+        <div style="
+          font-family: 'Noto Serif KR', serif;
+          font-weight: 900;
+          font-size: 22px;
+          color: #fff;
+          letter-spacing: -0.01em;
+          text-align: center;
+          text-shadow: 0 2px 16px rgba(0,0,0,0.1);
+          margin-bottom: 8px;
+        ">이향인은 아닙니다</div>
+
+        <!-- Subtitle -->
+        <div style="
+          font-family: 'Noto Sans KR', sans-serif;
+          font-weight: 300;
+          font-size: 12px;
+          color: rgba(255,255,255,0.62);
+          letter-spacing: 0.05em;
+          text-align: center;
+          line-height: 1.6;
+        ">뚜렷한 성향의 소유자</div>
+
+      </div>
+
+      <!-- Footer -->
+      <div style="
+        position: absolute;
+        bottom: 20px;
+        left: 0; right: 0;
+        text-align: center;
+        font-family: 'Noto Sans KR', sans-serif;
+        font-weight: 400;
+        font-size: 10px;
+        letter-spacing: 0.18em;
+        color: rgba(255,255,255,0.38);
+        text-transform: uppercase;
+      ">otrovert.com</div>
+
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
