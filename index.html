@@ -392,8 +392,8 @@ html.dark-mode .meter-dot{box-shadow:0 0 0 2px var(--bg)}
     </p>
     <button class="btn-start" onclick="startQuiz()">테스트 시작</button>
     <p class="meta">40문항 · 약 5–7분 소요<br>라미 카민스키 박사의 이향인 체크리스트 기반</p>
-    <!-- Debug panel -->
-    <div id="debug-panel" style="margin-top:32px;padding:16px;border:1px dashed var(--rule);border-radius:var(--radius);background:var(--surface);">
+    <!-- Debug panel (hidden in production) -->
+    <div id="debug-panel" style="display:none;margin-top:32px;padding:16px;border:1px dashed var(--rule);border-radius:var(--radius);background:var(--surface);">
       <div style="font-size:.7rem;font-weight:700;color:var(--ink3);letter-spacing:2px;margin-bottom:12px;">DEBUG</div>
       <div style="display:flex;gap:8px;flex-wrap:wrap;">
         <button onclick="debugResult(true)" style="padding:8px 16px;border:1px solid var(--accent);border-radius:var(--radius);background:transparent;color:var(--accent);font-size:.8rem;font-weight:600;cursor:pointer;font-family:inherit;">🔮 이향인 O</button>
