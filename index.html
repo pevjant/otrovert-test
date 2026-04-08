@@ -563,50 +563,39 @@ html.dark-mode .meter-dot{box-shadow:0 0 0 2px var(--bg)}
 </div>
 
 <script>
-// ── Letter & Circle layout constants ──
-// 메인 페이지(px 기준 320x320 영역)와 공유 카드 양쪽에 적용됨
 const LETTERS = {
   I: { top: 90, left: 110, size: 48, rot: -15 },
   O: { top: 190, left: 120, size: 56, rot: 5 },
   E: { top: 140, left: 200, size: 44, rot: 12 },
 };
-// 공유 카드용 스케일 (카드 420px 기준, 메인 대비 비율)
-const SC_SCALE = 0.75;
-const SC_OFFSET_TOP = -30; // 카드 내 원 중심 오프셋
+const LETTER_IDS = {
+  main: { I:'gl-i',        O:'gl-o',        E:'gl-e'        },
+  card: { I:'sc-letter-i', O:'sc-letter-o', E:'sc-letter-e' },
+};
 
-// 메인 페이지 글자 위치 적용 (인라인 스타일로 직접 적용)
-(function applyLetterLayout(){
-  var map = {I:'gl-i', O:'gl-o', E:'gl-e'};
-  for(var k in map){
+function applyLetterLayout(target){
+  var isCard = target === 'card';
+  for(var k in LETTERS){
     var L = LETTERS[k];
-    var el = document.getElementById(map[k]);
+    var el = document.getElementById(LETTER_IDS[target][k]);
     if(!el) continue;
-    el.style.top = L.top+'px';
-    el.style.left = L.left+'px';
-    el.style.fontSize = L.size+'px';
-    el.style.color = 'rgba(196,85,58,0.12)';
-    el.style.setProperty('--rot','rotate('+L.rot+'deg)');
+    if(isCard){
+      // left 기준 → right 기준으로 변환 (320 - left - fontSize*0.6)
+      el.style.top      = Math.round(L.top * 0.75 - 30) + 'px';
+      el.style.right    = Math.round((320 - L.left - L.size*0.6) * 0.75) + 'px';
+      el.style.fontSize = Math.round(L.size * 0.75) + 'px';
+    } else {
+      el.style.top             = L.top + 'px';
+      el.style.left            = L.left + 'px';
+      el.style.fontSize        = L.size + 'px';
+      el.style.color           = 'rgba(196,85,58,0.12)';
+      el.style.setProperty('--rot','rotate('+L.rot+'deg)');
+      el.style.transformOrigin = 'center center';
+    }
     el.style.transform = 'rotate('+L.rot+'deg)';
-    el.style.transformOrigin = 'center center';
-  }
-})();
-
-// 공유 카드 글자 위치 적용
-function applyShareCardLetters(){
-  var items = {I:'sc-letter-i', O:'sc-letter-o', E:'sc-letter-e'};
-  for(var k in items){
-    var L = LETTERS[k];
-    var el = document.getElementById(items[k]);
-    if(!el) continue;
-    // 메인: left 기준 → 공유카드: right 기준으로 변환 (320 - left - fontSize*0.6)
-    var rightVal = Math.round((320 - L.left - L.size*0.6) * SC_SCALE);
-    var topVal = Math.round(L.top * SC_SCALE + SC_OFFSET_TOP);
-    el.style.top = topVal + 'px';
-    el.style.right = rightVal + 'px';
-    el.style.fontSize = Math.round(L.size * SC_SCALE) + 'px';
-    el.style.transform = 'rotate(' + L.rot + 'deg)';
   }
 }
+applyLetterLayout('main');
 
 const QS=[
   {n:1,t:"나는 사람들이 많이 모인 곳에 있으면 외로움을 느낀다.",d:"F"},
@@ -941,7 +930,7 @@ function populateShareCard(){
   document.getElementById('sc-reference').style.color=T.footerLeft;
 
   // I/O/E letters — position from constants, then match result state
-  applyShareCardLetters();
+  applyLetterLayout('card');
   var scI=document.getElementById('sc-letter-i');
   var scO=document.getElementById('sc-letter-o');
   var scE=document.getElementById('sc-letter-e');
